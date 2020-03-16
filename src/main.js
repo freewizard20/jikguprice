@@ -2974,12 +2974,11 @@ setshiptype:function(){
     vueconsole.forex.eu = numnify((numnify(currencyinfo.quotes.USDKRW / currencyinfo.quotes.USDEUR) + 10).toFixed(2));
     vuecurrencybar.currencytimestamp = numnify(currencyinfo.timestamp);
     vuecurrencybar.stddate = stdcurrencyinfo.date;
-    vueconsole.forexstd.us = stdcurrencyinfo.stdforex.us;
-    vueconsole.forexstd.uk = stdcurrencyinfo.stdforex.uk;
-    vueconsole.forexstd.eu = stdcurrencyinfo.stdforex.eu;
-    vueconsole.forexstd.cn = stdcurrencyinfo.stdforex.cn;
-    vueconsole.forexstd.jp = stdcurrencyinfo.stdforex.jp;
-    
+    vueconsole.forexstd.us = parseFloat(stdcurrencyinfo.stdforex.us.replace(/,/g, ''));
+    vueconsole.forexstd.uk = parseFloat(stdcurrencyinfo.stdforex.uk.replace(/,/g, ''));
+    vueconsole.forexstd.eu = parseFloat(stdcurrencyinfo.stdforex.eu.replace(/,/g, ''));
+    vueconsole.forexstd.cn = parseFloat(stdcurrencyinfo.stdforex.cn.replace(/,/g, ''));
+    vueconsole.forexstd.jp = parseFloat(stdcurrencyinfo.stdforex.jp.replace(/,/g, ''));
 
     if(urlparam.a0 != undefined){
       vueconsole.mainitem.price = urlparam.a0;
