@@ -49,17 +49,6 @@
       width: 90%;
     }
 
-    .jeonmodal {
-      display: none;
-      background-color: white;
-      max-width: 400px;
-      height: 800px;
-      border-radius: 5px;
-      padding: 15px;
-      top: 35% !important;
-      width: 90%;
-    }
-
     select,
     textarea,
     input[type="text"],
@@ -259,6 +248,9 @@
 
     @media screen and (max-width: 600px) {
       .jeonmodal {
+        top: 40% !important;
+      }
+      .formmodal {
         top: 40% !important;
       }
       #myTopnav {
@@ -484,21 +476,21 @@
           <a id="twlink" href="#!" target="_blank" style="display:none;"><img src="img/twitter.png" style="height:45px;"></a>
         </div>
 
-        <div id="test4" class="formmodal center">
-          <h5 style="margin-top:15px;margin-bottom:25px;">버그제보 / 기능제안하기</h5>
+        <div id="test4" class="jeonmodal center" style="width:400px;height:400px;">
+          <h5 style="margin-top:15px;margin-bottom:25px;">버그제보 / 기능제안</h5>
           <form name="contact" method="POST" data-netlify-recaptcha="true" netlify-honeypot="bot-field" data-netlify="true">
             <p class="hidden">
-              <label>이름: <input name="bot-field" /></label>
+              <label>이름 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="bot-field" style="border:1px solid #000;border-radius:3px"/></label>
             </p>
             <p>
-              <label>이메일: <input type="email" name="email" /></label>
+              <label>이메일 : &nbsp;<input type="email" name="email" style="border:1px solid #000;border-radius:3px"/></label>
             </p>
             <p>
-              <label>내용: <textarea name="message"></textarea></label>
+              <label>내용 : <textarea name="message" style="border:1px solid #000;border-radius:3px;height:150px;"></textarea></label>
             </p>
             <div data-netlify-recaptcha="true"></div>
             <p>
-              <button type="submit">보내기</button>
+              <button type="submit" class="z-depth-1 light blue white-text waves-effect waves-light jeonbutton">보내기</button>
             </p>
           </form>
 
