@@ -181,7 +181,8 @@
     .jeoninput {
       margin-right: 5px;
       text-align: right;
-      border-radius: 0px;
+      border-radius: 3px;
+      border: 1px solid #444;
     }
 
     .collection-item {
@@ -428,14 +429,14 @@
             <div id="clipper" onclick="Materialize.toast('계산결과 링크가 복사되었습니다.',3000)" data-clipboard-text="http://jikguprice.com" class="col s2 l2 center-align" style="padding:0px;background-color:#3CC36D ;height:40px;cursor:pointer;">
               <img style="height:20px;margin-top:10px;margin-bottom:10px;" src="img/share2.png">
             </div>
-            <a rel="link2" href="javascript:sendLine();">
-              <div class="col s2 l2 center-align" style="padding:0px;background-color:#00C300;height:40px;cursor:pointer;">
-                <img style="height:40px;margin-top:0px;margin-bottom:0px;" src="img/line.png">
-              </div>
-            </a>
             <div id="kakao-link-btn" onclick="kakao()" class="col s2 l2 center-align" style="padding:0px;overflow:hidden;background-color:#FBE300;height:40px;cursor:pointer;">
               <img style="height:36px;margin-top:2px;margin-bottom:2px;" src="img/kakaotalk.png">
             </div>
+            <a rel="link2" href="#test2">
+              <div class="col s2 l2 center-align" style="padding:0px;background-color:#00C300;height:40px;cursor:pointer;">
+                <img style="height:20px;margin-top:10px;margin-bottom:0px;" src="img/band2.png">
+              </div>
+            </a>
             <a rel="link1" href="#test1" onclick="gofb()">
               <div class="col s2 l2 center-align" style="padding:0px;background-color:#3b5998;height:40px;cursor:pointer;">
                 <img style="height:24px;margin-top:8px;margin-bottom:8px;" src="img/facebook3.png">
@@ -459,11 +460,11 @@
         <div id="test2" class="jeonmodal center">
           <h6 id="bandtitle" style="margin-top:12px;margin-bottom:25px;">내 밴드에 계산결과 공유하기</h6>
           <span>
-	<script type="text/javascript" src="//developers.band.us/js/share/band-button.js?v=14022017"></script>
-	<script type="text/javascript">
-	    new ShareBand.makeButton({"lang":"ko","type":"e","text" : "링크로 계산결과 확인하기\n\n\n","withUrl":true});
-	</script>
-</span>
+	          <script type="text/javascript" src="//developers.band.us/js/share/band-button.js?v=14022017"></script>
+	          <script type="text/javascript">
+	            new ShareBand.makeButton({"lang":"ko","type":"e","text" : "링크로 계산결과 확인하기\n\n\n","withUrl":true});
+	          </script>
+          </span>
 
         </div>
 
@@ -472,12 +473,35 @@
           <a id="twlink" href="#!" target="_blank" style="display:none;"><img src="img/twitter.png" style="height:45px;"></a>
         </div>
 
+        <div id="test4" class="jeonmodal center">
 
+          <form name="contact" method="POST" data-netlify="true">
+            <p>
+              <label>Your Name: <input type="text" name="name" /></label>   
+            </p>
+            <p>
+              <label>Your Email: <input type="email" name="email" /></label>
+            </p>
+            <p>
+              <label>Your Role: <select name="role[]" multiple>
+                <option value="leader">Leader</option>
+                <option value="follower">Follower</option>
+              </select></label>
+            </p>
+            <p>
+              <label>Message: <textarea name="message"></textarea></label>
+            </p>
+            <p>
+              <button type="submit">Send</button>
+            </p>
+          </form>
 
-        <a id="amazonaa" target="_blank" href="https://www.amazon.com//ref=as_li_ss_tl?ie=UTF8&linkCode=ll2&tag=wjswlsgur-20&linkId=beae31c4750d39c1346abe95f016d6b2">
+        </div>
+
+        <a id="amazonaa" rel="link4" target="_blank" href="#test4">
           <div id="printresult" class="col s12 l6" style="margin-top:0px;">
             <div class="card" style="overflow:hidden; margin:0px;background-color:#FF9900;">
-              <h6 style="font-size:20px;color:white;margin:10px 0;" class="center">아마존으로 돌아가기</h6>
+              <h6 style="font-size:20px;color:white;margin:10px 0;" class="center">버그제보 / 기능제안</h6>
             </div>
           </div>
 
@@ -784,7 +808,7 @@
         objectType: 'feed',
               content: {
         title: linktext,
-        description: '#그래서, # 집앞까지 # 얼만데? #직구프라이스',
+        description: '관세 계산기 직구프라이스',
         imageUrl: 'https://jikguprice.com/img/logo.png',
         link: {
           mobileWebUrl: ogeturl,
@@ -822,7 +846,7 @@
       $("a[rel*=link1]").leanModal({ overlay: 0.5, closeButton: ".modal_close" });
       $("a[rel*=link2]").leanModal({ overlay: 0.5, closeButton: ".modal_close" });
       $("a[rel*=link3]").leanModal({ overlay: 0.5, closeButton: ".modal_close" });
-
+      $("a[rel*=link4]").leanModal({ overlay: 0.5, closeButton: ".modal_close" });
     });
   </script>
 
@@ -830,7 +854,7 @@
     // Script for Line share
     function sendLine() {
       var sns_title = "최종 가격은 " + ototaltotalc + "원 입니다(" + ocountrymark + ototalpricec + ")."; //title
-      var sns_summary = "그래서, 집 앞까지 얼만데? 직구 계산기 직구프라이스";
+      var sns_summary = "그래서, 집 앞까지 얼만데? 관세 계산기 직구프라이스";
       var sns_br = "\n";
       var sns_link = ogeturl;
       var sns_img = "";
