@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관세 계산기 직구프라이스 - 배대지 비교 및 최종 가격 계산</title>
+  <meta name="description" content="직구 사이트 관세 계산기, 해외직구 배송대행 비교, 구매대행 직구 사이트 계산">
+  <meta name="keywords" content="관세, 관세 계산기, 해외직구, 직구, 배대지, 직구 사이트, 구매대행, 배송대행">
+
+  <link rel="icon" type="image/x-icon" href="logogogo.png">
+  <!--link(rel="shortcut icon" href="" type="image/x-icon")-->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="관세 계산기 직구프라이스 - 배대지 비교 및 최종 가격 계산">
+  <meta property="og:description" content="직구 사이트 관세 계산기, 해외직구 배대지 비용, 구매대행 고시 환율과 배송대행 비교">
+  <meta property="og:image" content="http://jikguprice.com/img/logo.png">
+  <meta property="og:url" content="http://jikguprice.com/index.html">
+  <meta name="twitter:card" content="직구 사이트 관세 계산기, 해외직구 배대지 비용, 구매대행 고시 환율과 배송대행 비교">
+  <meta name="twitter:title" content="관세 계산기 직구프라이스 - 배대지 비교 및 최종 가격 계산">
+  <meta name="twitter:description" content="직구 사이트 관세 계산기, 해외직구 배대지 비용, 구매대행 고시 환율과 배송대행 비교">
+  <meta name="twitter:image" content="http://jikguprice.com/img/logo.png">
+  <meta name="twitter:domain" content="관세 계산기 직구프라이스 - 배대지 비교 및 최종 가격 계산">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen">
+
+  <style>
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"] {
+      font-size: 16px;
+    }
+    
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    
+    main {
+      flex: 1 0 auto;
+    }
+    
+    .page-footer {
+      background-color: blue;
+      z-index: 5;
+    }
+    
+    .mybutton {
+      margin: 8px;
+      margin-left: -4px
+    }
+    
+    .search-wrapper {
+      margin: 23px 0 12px 0;
+      border: solid 1px gray;
+    }
+    
+    .search-wrapper #search {
+      display: block;
+      font-size: 16px;
+      font-weight: 300;
+      width: 75%;
+      height: 45px;
+      margin: 0;
+      padding: 0 45px 0 15px;
+      border: 0;
+    }
+    
+    .search-wrapper .material-icons {
+      position: absolute;
+      top: 11px;
+      right: 10px;
+      cursor: pointer;
+    }
+    
+    .search-results {
+      margin: 0;
+      border-top: 1px solid #e9e9e9;
+      background-color: #fff;
+    }
+    
+    .clear {
+      clear: both;
+      height: 0;
+      overflow: hidden;
+    }
+    
+    .toastt {}
+    
+    .test {
+      visibility: visible;
+      opacity: 0.9;
+      background-color: #555;
+      color: #fff;
+      border-radius: 5px;
+      padding: 8px 10px 10px 10px;
+      position: absolute;
+      z-index: 999;
+      top: -6px;
+      left: 40px;
+      line-height: 20px;
+    }
+    /* Popup arrow */
+    
+    .qpopup {
+      cursor: pointer;
+    }
+    
+    #vques1 {
+      cursor: pointer;
+    }
+    
+    #navnav {
+      position: relative;
+      border-bottom: 3px solid #FF9900;
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+    
+    .colorednav {
+      background-color: #FF9900 !important;
+    }
+    
+    .collapsible-body {
+      padding: 0;
+    }
+    
+    .collapsible-header {
+      padding: 0 5px 0 5px;
+    }
+    
+    .collapsible-header i {
+      margin-right: 5px;
+    }
+    
+    .jeoninput {
+      margin-right: 5px;
+      text-align: right;
+      border-radius: 0px;
+    }
+    
+    .collection-item {
+      padding: 10px 8px !important;
+    }
+    
+    #search:focus {
+      outline: none;
+    }
+    
+    .listlist {
+      width: 19.9999%;
+      height: 100%;
+      float: left;
+      border-left: solid 1px #bdbdbd;
+    }
+    
+    .jeonl.jlist {
+      padding-left: 20px !important;
+      padding-right: 15px !important;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: none;
+    }
+    
+    h5 {
+      font-size: 18px;
+    }
+    
+    h4 {
+      font-size: 24px;
+    }
+    
+    .jeonbutton {
+      position: relative;
+      top: -3px;
+      display: inline-block;
+      border-radius: 2px;
+      margin: 5px;
+      margin-left: 0px
+    }
+    
+    .shortbutton {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    
+    .divider {
+      margin: 10px;
+    }
+    
+    #preloader,#spinner {  
+     position:fixed;  
+     top:0; left:0; right:0; bottom:0; margin:auto; 
+     background:#fff;  
+     z-index:9999;  
+     overflow:hidden;
+}  
+    
+    @media screen and (max-width: 600px) {
+      #myTopnav {
+        margin-left: 0px;
+        display: inline-block;
+      }
+      #navcon {
+        text-align: center;
+      }
+      #sidenavtab {
+        display: none;
+      }
+      .search-wrapper {
+        clear: left;
+        margin-top: 20px;
+      }
+      nav {
+        /*display:none;*/
+      }
+      .fxex {
+        display: none;
+      }
+      .test::after {
+        left: 20%;
+      }
+    }
+    
+    @media screen and (min-width:601px) {
+      #myTopnav {
+        margin-left: -20px;
+      }
+      #sidenavtab {
+        display: none;
+      }
+      .fxex2 {
+        display: none;
+      }
+      .search-wrapper #search {
+        width: 85%;
+      }
+    }
+    
+    @media screen and (max-width:900px) {
+      #googlead1 {
+        display: none;
+      }
+    }
+    
+     ::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      font-size: 15px;
+      color: #e0e0e0;
+    }
+    
+     ::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #e0e0e0;
+    }
+    
+     :-ms-input-placeholder {
+      /* IE 10+ */
+      color: #e0e0e0;
+    }
+    
+     :-moz-placeholder {
+      /* Firefox 18- */
+      color: #e0e0e0;
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90849965-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  <script type="text/javascript" src="js/vue.js"></script>
+  
+  <header>
+
+
+
+    <div class="container" style="overflow:hidden;">
+      <div id="logorow" class="row">
+        <div id="logoarea" class="col s12 l4 left" style="margin-bottom:12px;">
+          <a href='index.html'>
+          <img src="img/logo.png" height="50px" style="margin-right: 7px;margin-top:20px;" onclick="toIndex();" alt="logo">
+          <img src="img/logotext.jpg" height="55px" style="margin-top:15px;margin-right:40px" onclick="toIndex();" alt="logo text">
+          </a>
+        </div>
+
+        <div id="googlead1" class="col s12 l8" style="margin-top:20px;padding-left:0px;">
+          <div class="" style="">
+            <div class="" style="max-width:1040px;margin-left:auto;margin-right:auto;">
+              <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              <!-- jikguprice.com -->
+              <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5388808722955556" data-ad-slot="7096701020" data-ad-format="auto"></ins>
+              <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+  </header>
+
+
+  <div>
+
+    <nav id="navnav" class="light-blue" style="height:3em;">
+      <div class="container" id="navcon">
+        <ul class="topnav" id="myTopnav" style="">
+
+          <li style="height:3em;"><a class="valign-wrapper" href="index.html" style="height:3em;">직구 계산기</a></li>
+
+
+
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <main style="background-color:#F1F1F1">
+
+    <div class="container">
+      <div class="row card" style="margin-top:9px;padding:15px;">
+          <h4 style="text-align: center;">Jikguprice 이용약관<br />(Privacy Poilcy)</h4><br />
+<p>제 1조 ( 저작권 ) : Jikguprice에 게시된 글들은 전적으로 제가 창조한 저작물이며, 무단으로 복사, 도용, 배포 등의 행위를 금지합니다. Creative Commons 2.0 라이센스를 기반으로 저작권을 명시하시고 저에게 활용 사실을 통보하시면 원하시는 곳으로 공유하실 수 있습니다.</p>
+<p>제 2조 ( 개인정보 수집 대상 ) : Jikguprice에서는 이메일을 포함한 어떠한 정보도 수집하지 않으며, Amazon Associates를 통한 Amazon.com 접속의 경우에 대해 태그 링크가 부여되는 것으로 알려져 있습니다.</p>
+<p>제 3조 ( 공유에 관한 사항 ) : Jikguprice는 방문자를 특정할 수 있는 개인정보를 별도로 수집 또는 공유하지 않습니다.</p>
+<p>제 4조 ( 민감한 개인정보 ) : Jikguprice는 민감한 개인정보에 대해 다음과 같은 대응 방안을 마련합니다.</p>
+<ol>
+<li style="padding-left: 30px;">민감한 개인정보는 본 Jikguprice에서 요구하지도, 수집하지도, 활용하지도 않습니다.</li>
+<li style="padding-left: 30px;">민감한 개인정보가 입수된 경우 즉시 파기하며, 기록이 남지 않도록 조치하고 개인정보를 입수하게 된 경위를 포함하여 해당 개인정보 소유자에게 즉시 통보합니다.</li>
+<li style="padding-left: 30px;">민감한 개인정보를 어떠한 경우에도 요구하지 않는다는 사실을 명시합니다.</li>
+</ol>
+<p>제 5조 ( 개인 정보의 열람 ) : Jikguprice는 어떠한 경우에도 개인정보를 요구, 보관, 활용하는 경우가 없도록 할 것이나 원하시는 경우 언제든지 본인의 개인정보에 관해 목록을 제공하거나, 즉시 파기하도록 하는 조치를 요구하고, 이에 따라 Jikguprice는 즉시 해당 내용을 파기해야만 합니다.</p>
+<p>제 6조 ( 개인정보의 수집 시기 ) : 저는 어떠한 시기에도 어떠한 방법으로도 어떠한 종류의 개인정보도 수집하지 않도록 합니다.</p>
+<p>제 7조 ( 연합 Jikguprice의 운영 ) : 폐쇄형 커뮤니티 서비스가 주요 SNS로써 기능하는 대한민국에서는 해당 SNS에 접근하기 위하여 해당 폐쇄형 서비스에 독점적으로 포스팅 등을 진행하고 활동을 해야 하므로 저는 tistory.com, blog.naver.com 등을 통해서 별도 Jikguprice를 개설하고, 이를 tistory의 meta blog post에 등재하거나 cafe.naver.com, post.naver.com 등에 공유 등재하여 게시물을 홍보할 수 있습니다.</p>
+<p>제 8조 ( 공유의 방법 ) : 폐쇄형 SNS가 중심인(라인, 카카오 스토리, 밴드, 네이버 카페 등) 대한민국에서 다양한 루트로 Jikguprice 게시물을 홍보하기 위하여 기본적으로 가장 근본적인 본 jikguprice.com 웹사이트를 넘어 다양한 위치에서 게시물을 포스팅할 수 있음을 알립니다. 또한 해당 게시물의 공유는 단순히 링크를 공유하는 수준에서 그치는 것이 아니라, 네이버의 &#8220;동시에 포스트하기&#8221;, 티스토리, ppomppu.co.kr의 유사한 기능을 통해 해당 사이트에 게시물이 동일한 형태로 게시될 수 있음을 알립니다.</p>
+<p>제 9조 ( 어필리에이트 계약 ) : Jikguprice는 아마존 어소시에이트(Amazon Services LLC Associates Program)의 참여자로써 아마존 관련 링크를 클릭하는 경우 리베이트가 제공될 수 있음을 미리 알립니다. jikguprice.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to amazon.com.</p>
+<p>&nbsp;</p>
+      </div>
+
+
+
+
+    </div>
+
+  </main>
+
+
+
+  <footer class="page-footer light-blue">
+    <div class="footer-copyright">
+      <div class="container"><span style="color:white">© 2017 Jikguprice.com</span><a href="tos.html" class="white-text right fotlink">Terms of Sevice   </a><a href="about.html" class="white-text right fotlink">About&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    </div>
+  </footer>
+
+
+  <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+</body>
+
+</html>
