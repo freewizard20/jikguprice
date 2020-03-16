@@ -49,6 +49,17 @@
       width: 90%;
     }
 
+    .jeonmodal {
+      display: none;
+      background-color: white;
+      max-width: 400px;
+      height: 800px;
+      border-radius: 5px;
+      padding: 15px;
+      top: 35% !important;
+      width: 90%;
+    }
+
     select,
     textarea,
     input[type="text"],
@@ -473,26 +484,21 @@
           <a id="twlink" href="#!" target="_blank" style="display:none;"><img src="img/twitter.png" style="height:45px;"></a>
         </div>
 
-        <div id="test4" class="jeonmodal center">
-
-          <form name="contact" method="POST" data-netlify="true">
-            <p>
-              <label>Your Name: <input type="text" name="name" /></label>   
+        <div id="test4" class="formmodal center">
+          <h5 style="margin-top:15px;margin-bottom:25px;">버그제보 / 기능제안하기</h5>
+          <form name="contact" method="POST" data-netlify-recaptcha="true" netlify-honeypot="bot-field" data-netlify="true">
+            <p class="hidden">
+              <label>이름: <input name="bot-field" /></label>
             </p>
             <p>
-              <label>Your Email: <input type="email" name="email" /></label>
+              <label>이메일: <input type="email" name="email" /></label>
             </p>
             <p>
-              <label>Your Role: <select name="role[]" multiple>
-                <option value="leader">Leader</option>
-                <option value="follower">Follower</option>
-              </select></label>
+              <label>내용: <textarea name="message"></textarea></label>
             </p>
+            <div data-netlify-recaptcha="true"></div>
             <p>
-              <label>Message: <textarea name="message"></textarea></label>
-            </p>
-            <p>
-              <button type="submit">Send</button>
+              <button type="submit">보내기</button>
             </p>
           </form>
 
