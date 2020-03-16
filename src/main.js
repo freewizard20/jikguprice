@@ -406,7 +406,7 @@ var vuecurrencybar = new Vue({
 
               </ul>
               <div class="z-depth-1 center-align" style="margin:12px 5px;margin-bottom:12px;padding:10px 15px;border:1px solid green;border-radius:3px;" v-if="istax==false&&totalprice!=0">
-                <h6 style="color:green;font-size:18px;line-height:137%;">휴, 관부가세가 없네요 :)<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br />* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:3px;left:3px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><input type="checkbox" v-model="isnotlist" style="position:relative;left:8px;"></span></h6>
+                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br />* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:3px;left:3px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><input type="checkbox" v-model="isnotlist" style="position:relative;left:8px;"></span></h6>
                 <div class="clear"></div>
               </div>
               <div class="z-depth-1 center-align" style="margin:12px 0px;margin-bottom:12px;padding:10px 15px;border:1px solid red;border-radius:3px;" v-if="istax==true">
@@ -511,7 +511,7 @@ var vuecurrencybar = new Vue({
                 </a>
                 <a href="#!">
                   <div id="directship" class="z-depth-1 light-blue white-text waves-effect waves-light jeonbutton shipbtn" v-bind:class="{orange:shipmethod=='direct'}" v-on:click="shipmethod = 'direct'">
-                    <h6 style="margin:5px 10px;">한국 직배!!</h6>
+                    <h6 style="margin:5px 10px;">한국 직배송</h6>
                   </div>
                 </a>
                 <a href="#!">
