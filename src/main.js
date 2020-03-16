@@ -384,7 +384,7 @@ var vuecurrencybar = new Vue({
                   <h6 style="margin:5px 10px;">합배송 추가</h6>
                 </div>
               </a>
-              <h5><i class="material-icons" style="margin-left:-5px;margin-right:10px;position:relative;top:4px;">payment</i>결제금액 <span v-if="(country!='us')&&(istax==false)" style="color:#bdbdbd;font-size:15px;"> (관세기준 {{countrymark}}{{safeprice}})</span></h5>
+              <h5><i class="material-icons" style="margin-left:-5px;margin-right:10px;position:relative;top:4px;">payment</i>결제금액 <span v-if="(istax==false)" style="color:#bdbdbd;font-size:15px;"> (관세기준 {{countrymark}} {{safeprice}})</span></h5>
               <div class="clear"></div>
               <h6>물품가(현지세금 포함) : {{countrymark}} <input type="number" style="width:70px;margin-left:5px;" v-model="mainitem.price" class="jeoninput" placeholder="149.99"></h6>
               <h6>쇼핑몰 배송비 : {{countrymark}} <input type="number" style="width:70px;margin-left:5px;margin-bottom:15px;" v-model="mainitem.shipprice" placeholder="5.67" class="jeoninput"></h6>
