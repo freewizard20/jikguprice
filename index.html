@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="2e766d9a589d323b86f7adfc5cfe7ae930e04271"/>
   <title>관세 계산기 직구프라이스 - 배대지 비교 및 최종 가격 계산</title>
   <meta name="description" content="직구 사이트 관세 계산기, 해외직구 배송대행 비교, 구매대행 직구 사이트 계산">
   <meta name="keywords" content="관세, 관세 계산기, 해외직구, 직구, 배대지, 직구 사이트, 구매대행, 배송대행">
@@ -324,6 +325,12 @@
     }
   </style>
 
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "4dfeaafe8c279c";
+wcs_do();
+</script>
 
 </head>
 
@@ -479,23 +486,9 @@
           <a id="twlink" href="#!" target="_blank" style="display:none;"><img src="img/twitter.png" style="height:45px;"></a>
         </div>
 
-        <div id="test4" class="jeonmodal center" style="width:400px;height:460px;">
+        <div id="test4" class="jeonmodal center" style="width:400px;height:130px;">
           <h5 style="margin-top:15px;margin-bottom:25px;">버그제보 / 기능제안</h5>
-          <form name="contact" method="POST" data-netlify-recaptcha="true" netlify-honeypot="bot-field" data-netlify="true">
-            <p class="hidden">
-              <label>이름 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="bot-field" style="border:1px solid #000;border-radius:3px"/></label>
-            </p>
-            <p>
-              <label>이메일 : &nbsp;<input type="email" name="email" style="border:1px solid #000;border-radius:3px"/></label>
-            </p>
-            <p>
-              <label>내용 : <textarea name="message" style="border:1px solid #000;border-radius:3px;height:150px;"></textarea></label>
-            </p>
-            <div data-netlify-recaptcha="true"></div>
-            <p>
-              <button type="submit" class="z-depth-1 light blue white-text waves-effect waves-light jeonbutton">보내기</button>
-            </p>
-          </form>
+          <h6>support@jikguprice.com</h6>
 
         </div>
 
@@ -547,7 +540,7 @@
 
   <footer class="page-footer light-blue">
     <div class="footer-copyright">
-      <div class="container"><span style="color:white">© 2017 Jikguprice.com</span><a href="tos.html" class="white-text right fotlink">Terms of Sevice   </a><a href="about.html" class="white-text right fotlink">About&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+      <div class="container"><span style="color:white">© 2017 - 2020 Jikguprice.com</span><a href="tos.html" class="white-text right fotlink">Terms of Sevice   </a><a href="about.html" class="white-text right fotlink">About&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     </div>
   </footer>
 
@@ -725,7 +718,6 @@
 
   <script>
     function gofb() {
-      console.log("fbfb");
       var tmp = ogeturl;
       var tmp2;
       $.ajax({
@@ -736,9 +728,9 @@
         data: '{ longUrl: "' + tmp + '"}',
         dataType: 'json',
         success: function(response) {
-          tmp = response // Evaluate the J-Son response object.
+          tmp = response; // Evaluate the J-Son response object.
           tmp2 = 'https://www.facebook.com/sharer/sharer.php?u=' + tmp.id;
-
+          console.log('success from google shortener');
           $("#fblink").attr("href", tmp2);
           $("#fblink").css("display", "block");
         }
@@ -809,7 +801,7 @@
         objectType: 'feed',
               content: {
         title: linktext,
-        description: '관세 계산기 직구프라이스',
+        description: '직구 계산과 배대지 비교 - 직구프라이스',
         imageUrl: 'https://jikguprice.com/img/logo.png',
         link: {
           mobileWebUrl: ogeturl,
