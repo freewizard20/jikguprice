@@ -848,8 +848,7 @@ var vuecurrencybar = new Vue({
                           </a>
                           <h6>직접 입력 : <input type="number" v-model="fcardratein" style="width:70px;margin-right:0px;" class="jeoninput" placeholder="1"> %</h6>
                           <div class="clear"></div>
-                          <h6 style="font-size:16px;color:#9e9e9e;float:right;margin-top:20px;">,계산결과는 참고용이며 실제 청구금액과 다를 수 있습니다</h6>
-                          <h6 style="font-size:16px;color:#9e9e9e;float:right;margin-top:0px;">오류제보 : snowingmidnight@naver.com</h6>
+                          <h6 style="font-size:16px;color:#9e9e9e;float:right;margin-top:20px;">계산결과는 참고용이며 실제 청구금액과 다를 수 있습니다</h6>
                           <div class='clear'></div>
                           <p style="display:none;">{{totalprice}}{{setprice}}{{setshipprice}}{{settaxprice}}</p>
                           <p style="display:none;">{{setdiscount1}}</p>
