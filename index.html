@@ -74,6 +74,10 @@
       -webkit-appearance: none;
       margin: 0;
     }
+    
+    input::placeholder{
+      padding-right:3px;
+    }
 
     body {
       display: flex;
@@ -720,17 +724,12 @@ wcs_do();
     function gofb() {
       var tmp = ogeturl;
       var tmp2;
-      $.ajax({
-
-        url: 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=http://goo.gl/fbsS&key=AIzaSyAdUjpsgT1JoNUY8y0Vd0mHNbRzFy6hwa8',
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        data: '{ longUrl: "' + tmp + '"}',
-        dataType: 'json',
+      $.get({
+        url: 'https://tinyurl.com/api-create.php?url=' + tmp,
         success: function(response) {
+          console.log(response);
           tmp = response; // Evaluate the J-Son response object.
           tmp2 = 'https://www.facebook.com/sharer/sharer.php?u=' + tmp.id;
-          console.log('success from google shortener');
           $("#fblink").attr("href", tmp2);
           $("#fblink").css("display", "block");
         }
