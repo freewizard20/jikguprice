@@ -718,7 +718,6 @@ wcs_do();
 
   <script>
     function gofb() {
-      console.log("fbfb");
       var tmp = ogeturl;
       var tmp2;
       $.ajax({
@@ -729,9 +728,9 @@ wcs_do();
         data: '{ longUrl: "' + tmp + '"}',
         dataType: 'json',
         success: function(response) {
-          tmp = response // Evaluate the J-Son response object.
+          tmp = response; // Evaluate the J-Son response object.
           tmp2 = 'https://www.facebook.com/sharer/sharer.php?u=' + tmp.id;
-
+          console.log('success from google shortener');
           $("#fblink").attr("href", tmp2);
           $("#fblink").css("display", "block");
         }
@@ -802,7 +801,7 @@ wcs_do();
         objectType: 'feed',
               content: {
         title: linktext,
-        description: '관세 계산기 직구프라이스',
+        description: '직구 계산과 배대지 비교 - 직구프라이스',
         imageUrl: 'https://jikguprice.com/img/logo.png',
         link: {
           mobileWebUrl: ogeturl,
