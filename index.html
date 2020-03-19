@@ -9,7 +9,7 @@
   <title>관세 계산기 직구프라이스 - 배대지 비교 및 최종 가격 계산</title>
   <meta name="description" content="직구 사이트 관세 계산기, 해외직구 배송대행 비교, 구매대행 직구 사이트 계산">
   <meta name="keywords" content="관세, 관세 계산기, 해외직구, 직구, 배대지, 직구 사이트, 구매대행, 배송대행">
-
+  <link rel="canonical" href="https://jikguprice.com/index.html">
   <link rel="icon" type="image/x-icon" href="logogogo.png">
   <!--link(rel="shortcut icon" href="" type="image/x-icon")-->
   <meta property="og:type" content="website">
@@ -73,6 +73,10 @@
     input[type=number]::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
+    }
+    
+    input::placeholder{
+      padding-right:3px;
     }
 
     body {
@@ -495,7 +499,7 @@ wcs_do();
         <a id="amazonaa" rel="link4" target="_blank" href="#test4">
           <div id="printresult" class="col s12 l6" style="margin-top:0px;">
             <div class="card" style="overflow:hidden; margin:0px;background-color:#FF9900;">
-              <h6 style="font-size:20px;color:white;margin:10px 0;" class="center">오류제보 / 기능제안</h6>
+              <h6 style="font-size:20px;color:white;margin:10px 0;" class="center">기능제안 / 버그제보</h6>
             </div>
           </div>
 
@@ -720,17 +724,12 @@ wcs_do();
     function gofb() {
       var tmp = ogeturl;
       var tmp2;
-      $.ajax({
-
-        url: '',
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        data: '{ longUrl: "' + tmp + '"}',
-        dataType: 'json',
+      $.get({
+        url: 'https://tinyurl.com/api-create.php?url=' + tmp,
         success: function(response) {
+          console.log(response);
           tmp = response; // Evaluate the J-Son response object.
           tmp2 = 'https://www.facebook.com/sharer/sharer.php?u=' + tmp.id;
-          console.log('success from google shortener');
           $("#fblink").attr("href", tmp2);
           $("#fblink").css("display", "block");
         }

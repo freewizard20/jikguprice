@@ -2136,7 +2136,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.us;
               this.usedforexstd = this.forexstd.us;
               vuecurrencybar.country = '미국';
-              vuecurrencybar.usedcurrency = this.forex.us-10;
+              vuecurrencybar.usedcurrency = (this.forex.us-10).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.us;
               break;
             case 'jp':
@@ -2151,7 +2151,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.jp;
               this.usedforexstd = this.forexstd.jp;
               vuecurrencybar.country = '일본';
-              vuecurrencybar.usedcurrency = this.forex.jp-0.1;
+              vuecurrencybar.usedcurrency = (this.forex.jp-0.1).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.jp;
               break;
             case 'eu':
@@ -2164,7 +2164,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.eu;
               this.usedforexstd = this.forexstd.eu;
               vuecurrencybar.country = '유로';
-              vuecurrencybar.usedcurrency = this.forex.eu-10;
+              vuecurrencybar.usedcurrency = (this.forex.eu-10).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.eu;
               break;
             case 'cn':
@@ -2179,7 +2179,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.cn;
               this.usedforexstd = this.forexstd.cn;
               vuecurrencybar.country = '중국';
-              vuecurrencybar.usedcurrency = this.forex.cn-1.9;
+              vuecurrencybar.usedcurrency = (this.forex.cn-1.9).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.cn;
               break;
             case 'uk':
@@ -2192,7 +2192,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.uk;
               this.usedforexstd = this.forexstd.uk;
               vuecurrencybar.country = '영국';
-              vuecurrencybar.usedcurrency = this.forex.uk-13;
+              vuecurrencybar.usedcurrency = (this.forex.uk-13).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.uk;
               break;
           }
