@@ -418,7 +418,7 @@ var vuecurrencybar = new Vue({
                 <h6 style="color:red;font-size:18px;line-height:137%;">관부가세 계산을 위해 품목을 알려주세요<i onclick="Materialize.toast('과세기준 :<br />미국 목록통관 (결제총액 $200)<br />기타 (결제총액 $150 상당)',4000)" class="material-icons" style="position:relative;top:3px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><br
                   />(총액 : {{countrymark}} {{totalpricec}})</h6>
                 <div class="clear"></div>
-                <select style="margin:10px 0px;border:1px solid #bdbdbd;" v-if="istax==true" v-model="itemtype">
+                <select style="margin:10px 0px;border:1px solid #bdbdbd;font:inherit;" v-if="istax==true" v-model="itemtype">
                   <option v-if="((country=='us'||country=='eu')||country=='uk')" value="1">무관세(FTA)</option>
                   <option value="121">시계류</option>
                   <option value="2">의류</option>
