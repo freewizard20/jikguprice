@@ -191,7 +191,8 @@ var vuecurrencybar = new Vue({
                 </li>
               </ul>
               <div id="modal_compare" class="jeonmodal center">
-                <h5 id="modal_compare_title" style="margin-top:15px;margin-bottom:25px;">배대지 비교</h5>
+                <h5 id="modal_compare_title" style="margin-top:15px;margin-bottom:25px;">배대지 비교 ({{weightdisplay}}lbs)</h5>
+                <h6>{{shipmethoddisplay}}, {{isrealweightdisplay}}</h6>
               </div>
               </div>
       `,
