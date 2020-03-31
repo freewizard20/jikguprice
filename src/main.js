@@ -1067,9 +1067,18 @@ var vuecurrencybar = new Vue({
         }
         else if (shiptype == 'malltail') {
           if(method=='air'){
+          /*
+
+          몰테일 항공운송
+
+          */
           if (country == 'us') {
             tweight = Math.ceil(weight / 0.453592);
-            return [9 + 2 * (tweight), true];
+            if(tweight<=5){
+              return [10.98 + 2 * (tweight), true];
+            }else{
+              return [20 + 2*(tweight - 6), true];
+            }
           }
           else if (country == 'eu') {
 
@@ -1137,11 +1146,68 @@ var vuecurrencybar = new Vue({
           }
           else if (country == 'cn') {
             tweight = Math.ceil(weight * 2) / 2;
-            return [(6.14 * (tweight) + 7.7) * (vueconsole.forex.us / vueconsole.forex.cn), true];
+            if (tweight <= 7.5){
+              switch(tweight){
+                case 0.5:
+                  tmp = 10.77;
+                  break;
+                case 1:
+                  tmp = 13.85;
+                  break;
+                case 1.5:
+                  tmp = 16.92;
+                  break;
+                case 2:
+                  tmp = 20.00;
+                  break;
+                case 2.5:
+                  tmp = 23.08;
+                  break;
+                case 3:
+                  tmp = 26.15;
+                  break;
+                case 3.5:
+                  tmp = 29.23;
+                  break;
+                case 4:
+                  tmp = 32.31;
+                  break;
+                case 4.5:
+                  tmp = 35.38;
+                  break;
+                case 5:
+                  tmp = 38.46;
+                  break;
+                case 5.5:
+                  tmp = 41.54;
+                  break;
+                case 6:
+                  tmp = 44.62;
+                  break;
+                case 6.5:
+                  tmp = 47.69;
+                  break;
+                case 7:
+                  tmp = 50.77;
+                  break;
+                case 7.5:
+                  tmp = 53.85;
+                  break;
+              }
+            }else{
+              tmp = (6.15 * (tweight) + 7.7) * (vueconsole.forex.us / vueconsole.forex.cn)
+            }
+              return [tmp, true];
           }
           else {
             return [99999, true];
           }
+
+          /*
+
+          몰테일 해상운송
+
+          */
           }else{
             if(country=='jp'){
               tweight = Math.ceil(weight * 2) / 2;
@@ -1221,9 +1287,9 @@ var vuecurrencybar = new Vue({
             }else if(country=='cn'){
               tweight = Math.ceil(weight*2)/2;
               if(tweight<=15){
-                tmp = 9 + 4*tweight;
+                tmp = 9.9 + 1.8*tweight;
               }else{
-                tmp = 69 + 3*(tweight-15);
+                tmp = 69 + 1.8*(tweight-15);
               }
               return [(tmp * (vueconsole.forex.us / vueconsole.forex.cn)), true];
             }else{
