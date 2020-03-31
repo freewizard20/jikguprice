@@ -2336,8 +2336,7 @@ var vuecurrencybar = new Vue({
           vueresult.price2 = Math.round((this.cardrated + this.fcardrated + this.cardrated * this.fcardrated) * this.totalitemprice * this.usedforex);
           return p1 + p2;
         },
-        setshiptype: function(){
-  
+        setshiptype: function(){  
           if(this.shipmethod=='fixed'){
               this.shiptype='basic';
           }else if(this.shipmethod=='direct'){
@@ -2348,7 +2347,6 @@ var vuecurrencybar = new Vue({
               this.shiptype='basic';
           }
         },
-
         setshipprice: function() {
           var s1;
           var s2;

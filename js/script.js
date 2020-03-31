@@ -11,7 +11,7 @@ setTimeout(
         $("#googlead1").addClass("l7");
       }
   
-      if ($(window).width() > 900) {
+      if ($(window).width() > 990) {
         $('#googlead2').insertBefore('#survey');
       }
       else {
@@ -24,7 +24,7 @@ setTimeout(
   
   
   
-      if ($(window).width() > 900) {
+      if ($(window).width() > 990) {
         $('#gobutton').css('display', 'none');
         $('#gobutton2').css('display', 'none');
       }
@@ -45,7 +45,7 @@ setTimeout(
   
       $(window).resize(function() {
   
-        if ($(window).width() > 900) {
+        if ($(window).width() > 990) {
           $('#googlead2').insertBefore('#survey');
           $('#gobutton').css('display', 'none');
           $('#gobutton2').css('display', 'none');
@@ -78,7 +78,7 @@ setTimeout(
           $("#googlead1").addClass("l7");
         }
   
-        if ($(window).width() > 900) {
+        if ($(window).width() > 990) {
           $('#googlead2').insertBefore('#survey');
           $('#amazonad').insertAfter('#amazonaa');
         }
@@ -89,7 +89,7 @@ setTimeout(
   
         }
   
-        if ($(window).width() > 900) {
+        if ($(window).width() > 990) {
           $('#survey').css("margin-bottom", 16);
           $('#amazontitle').css("margin-bottom", 30);
           $('#resultscard').css("padding-right", 12);
@@ -103,7 +103,6 @@ setTimeout(
   
         }
         else {
-  
   
           $('#survey').css("margin-bottom", 5);
           $('#amazontitle').css("margin-bottom", 30);
