@@ -148,7 +148,7 @@ var vuecurrencybar = new Vue({
                 <li>
                   <div class="collapsible-header"><i class="material-icons">&#xE558;</i>전체 배송비
                   
-                  <a style="margin-top:3px;" rel="link5" href="#modal_compare">
+                  <a style="margin-top:3px;" rel="link5" href="#modal_compare" v-if="shipmethoddisplay=='항공' || shipmethoddisplay=='해상'">
                     <div id="fixedship" style="margin-left:6px;margin-top:9.5px;" class="z-depth-1 light-blue white-text waves-effect waves-light jeonbutton shipbtn">
                       <h6 style="margin:7px 7px 7px 7px;">배대지 비교</h6>
                     </div>
