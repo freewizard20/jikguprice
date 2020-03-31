@@ -201,35 +201,35 @@ var vuecurrencybar = new Vue({
                 </li>
               </ul>
               <div id="modal_compare" class="comparemodal center">
-                <h5 id="modal_compare_title" style="margin-top:15px;margin-bottom:3px;">배대지 비교 ({{weightdisplay}}lbs)</h5>
-                <h6 style="margin_bottom:10px;">( {{shipmethoddisplay}}, {{isrealweightdisplay}} )</h6>
+                <h5 id="modal_compare_title" style="margin-top:7px;margin-bottom:3px;color:#03a9fa;font-weight:bold;">배대지 비교 ({{weightdisplay}}lbs)</h5>
+                <h6 style="margin_bottom:10px;font-weight:900;">( {{shipmethoddisplay}}, {{isrealweightdisplay}} )</h6>
                 <div class="divider"></div>
-                <div v-if="compareresult_showable[0]==true">
-                몰테일 : {{compareresult.malltail}}원
+                <div v-if="compareresult_showable[0]==true" class="compare_list">
+                <span class="compare_name">몰테일</span> : <span class="compare_text">{{compareresult.malltail}}</span>원
                 </div>
-                <div v-if="compareresult_showable[1]==true">
-                이하넥스 : {{compareresult.ehanex}}원
+                <div v-if="compareresult_showable[1]==true" class="compare_list">
+                <span class="compare_name">이하넥스</span> : <span class="compare_text">{{compareresult.ehanex}}</span>원
                 </div>
-                <div v-if="compareresult_showable[2]==true">
-                아이포터 : {{compareresult.iporter}}원
+                <div v-if="compareresult_showable[2]==true" class="compare_list">
+                <span class="compare_name">아이포터</span> : <span class="compare_text">{{compareresult.iporter}}</span>원
                 </div>
-                <div v-if="compareresult_showable[3]==true">
-                포스트베이 : {{compareresult.postbay}}원
+                <div v-if="compareresult_showable[3]==true" class="compare_list">
+                <span class="compare_name">포스트베이</span> : <span class="compare_text">{{compareresult.postbay}}</span>원
                 </div>
-                <div v-if="compareresult_showable[4]==true">
-                오마이집 : {{compareresult.omyzip}}원
+                <div v-if="compareresult_showable[4]==true" class="compare_list">
+                <span class="compare_name">오마이집</span> : <span class="compare_text">{{compareresult.omyzip}}</span>원
                 </div>
-                <div v-if="compareresult_showable[5]==true">
-                유니옥션 : {{compareresult.uniauction}}원
+                <div v-if="compareresult_showable[5]==true" class="compare_list">
+                <span class="compare_name">유니옥션</span> : <span class="compare_text">{{compareresult.uniauction}}</span>원
                 </div>
-                <div v-if="compareresult_showable[6]==true">
-                엘덱스 : {{compareresult.eldex}}원
+                <div v-if="compareresult_showable[6]==true" class="compare_list">
+                <span class="compare_name">엘덱스</span> : <span class="compare_text">{{compareresult.eldex}}</span>원
                 </div>
-                <div v-if="compareresult_showable[7]==true">
-                뉴욕걸즈 : {{compareresult.newyorkgirls}}원
+                <div v-if="compareresult_showable[7]==true" class="compare_list">
+                <span class="compare_name">뉴욕걸즈</span> : <span class="compare_text">{{compareresult.newyorkgirls}}</span>원
                 </div>
-                <div v-if="compareresult_showable[8]==true">
-                지니집 : {{compareresult.ginizip}}원
+                <div v-if="compareresult_showable[8]==true" class="compare_list">
+                <span class="compare_name">지니집</span> : <span class="compare_text">{{compareresult.ginizip}}</span>원
                 </div>
               </div>
             </div>
