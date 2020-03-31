@@ -799,7 +799,7 @@ var vuecurrencybar = new Vue({
                         </li>
                         <li class="collection-item" style="padding-left:11px !important;">
                           <h6 style="margin-bottom:15px;margin-left:5px;">면세범위내 품목지정<i onclick="Materialize.toast('60ml 이상 향수, 주류, 담배 등 사치품은 $150 면세범위 이내여도 국내 특소세 등이 부과됩니다<br />** 이 선택지는 $150 이하에서만 사용됩니다. 초과한 제품은 위에서 분류해 주세요',7000)" class="material-icons" style="position:relative;top:4px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></h6>
-                          <select style="margin:10px 5px;margin-top:3px;border:1px solid #bdbdbd;" v-model="itemtype2">
+                          <select style="font:inherit; margin:10px 5px;margin-top:3px;border:1px solid #bdbdbd;" v-model="itemtype2">
                               <option value="none">선택</option>
                               <option value="1">60ml 이상 향수</option>
                                 <option value="2">와인/청주</option>
