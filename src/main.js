@@ -85,9 +85,19 @@ var vuecurrencybar = new Vue({
         weightdisplay: 0,
         weightunitdisplay: 'lbs',
         cardtypedisplay: '카드',
-        fcardtypedisplay: '표준'
-
-
+        fcardtypedisplay: '표준',
+        compareresult: {
+            malltail : -1,
+            ehanex : -1,
+            iporter : -1,
+            postbay : -1,
+            omyzip : -1,
+            uniauction : -1,
+            eldex : -1,
+            newyorkgirls : -1,
+            ginizip : -1,
+        },
+        compareresult_showable: [true, true, true, true, true, true, true, true, true]
       },
       template : `<div>
                     <h6 class="light-blue-text" style="font-size:20px;margin-bottom:20px;margin-top:20px;margin-left:20px;">직구프라이스 계산내역</h6>
@@ -193,6 +203,7 @@ var vuecurrencybar = new Vue({
               <div id="modal_compare" class="jeonmodal center">
                 <h5 id="modal_compare_title" style="margin-top:15px;margin-bottom:25px;">배대지 비교 ({{weightdisplay}}lbs)</h5>
                 <h6>{{shipmethoddisplay}}, {{isrealweightdisplay}}</h6>
+                <h6>{{compareresult_showable}}</h6>
               </div>
               </div>
       `,
@@ -1931,8 +1942,8 @@ var vuecurrencybar = new Vue({
           else {
             this.ssb = [false, false, false, false, false, false, false, false, false];
           }
-
-
+          
+          vueresult.compareresult_showable = this.ssb;
 
         },
         resetship : function(){
@@ -2218,7 +2229,7 @@ var vuecurrencybar = new Vue({
           vueresult.price2 = Math.round((this.cardrated + this.fcardrated + this.cardrated * this.fcardrated) * this.totalitemprice * this.usedforex);
           return p1 + p2;
         },
-setshiptype:function(){
+        setshiptype: function(){
   
           if(this.shipmethod=='fixed'){
               this.shiptype='basic';
