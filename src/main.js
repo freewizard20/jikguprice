@@ -432,8 +432,30 @@ var vuecurrencybar = new Vue({
         realweightdisplay: 0,
         volumeweightdisplay: 0,
         ssb: [true, true, true, true, true, true, true, true, true],
-        target: ''
-
+        target: '',
+        cardrate_forex:{
+          basic : 0.0105,
+          visa : 0.011,
+          mastercard : 0.01,
+          amex : 0.014,
+          maestro : 0.03,
+          jcb : 0,
+          bcg : 0,
+          union : 0.008
+      },
+      cardrate_bank: {
+        basic : 0.0028,
+        shinhan : 0.0018,
+        lotte : 0.002,
+        kookmin : 0.0025,
+        citi : 0.005,
+        samsung : 0.0025,
+        hyundai : 0.0018,
+        woori : 0.003,
+        nonghyup : 0.0035,
+        hana : 0.003,
+        bcglobal : 0.0035,
+      }
       },
       template:`
       <div>
@@ -2968,58 +2990,58 @@ var vuecurrencybar = new Vue({
 
               case 'basic':
                 vueresult.cardtypedisplay = "카드";
-                tmp = '평균 수수료율 : 0.28%';
-                this.cardrated = 0.0028;
+                tmp = '평균 수수료율 : ' + (this.cardrate_bank.basic*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.basic;
                 break;
               case 'shinhan':
                 vueresult.cardtypedisplay = "신한카드";
-                tmp = '신한 수수료율 : 0.18%';
-                this.cardrated = 0.0018;
+                tmp = '신한 수수료율 : ' + (this.cardrate_bank.shinhan*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.shinhan;
                 break;
               case 'lotte':
                 vueresult.cardtypedisplay = "롯데카드";
-                tmp = '롯데 수수료율 : 0.2%';
-                this.cardrated = 0.002;
+                tmp = '롯데 수수료율 : ' + (this.cardrate_bank.lotte*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.lotte;
                 break;
               case 'kookmin':
                 vueresult.cardtypedisplay = "국민카드";
-                tmp = '국민 수수료율 : 0.25%';
-                this.cardrated = 0.0025;
+                tmp = '국민 수수료율 : ' + (this.cardrate_bank.kookmin*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.kookmin;
                 break;
               case 'foreign':
                 vueresult.cardtypedisplay = "씨티카드";
-                tmp = '씨티 수수료율 : 0.5%';
-                this.cardrated = 0.005;
+                tmp = '씨티 수수료율 : ' + (this.cardrate_bank.citi*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.citi;
                 break;
               case 'samsung':
                 vueresult.cardtypedisplay = "삼성카드";
-                tmp = '삼성 수수료율 : 0.2%';
-                this.cardrated = 0.0025;
+                tmp = '삼성 수수료율 : ' + (this.cardrate_bank.samsung*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.samsung;
                 break;
               case 'hyundai':
                 vueresult.cardtypedisplay = "현대카드";
-                tmp = '현대 수수료율 : 0.18%';
-                this.cardrated = 0.0018;
+                tmp = '현대 수수료율 : ' + (this.cardrate_bank.hyundai*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.hyundai;
                 break;
               case 'woori':
                 vueresult.cardtypedisplay = "우리카드";
-                tmp = '우리 수수료율 : 0.3%';
-                this.cardrated = 0.003;
+                tmp = '우리 수수료율 : ' + (this.cardrate_bank.woori*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.woori;
                 break;
               case 'nonghyup':
                 vueresult.cardtypedisplay = "농협카드";
-                tmp = '농협 수수료율 : 0.35%';
-                this.cardrated = 0.0035;
+                tmp = '농협 수수료율 : ' + (this.cardrate_bank.nonghyup*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.nonghyup;
                 break;
               case 'hana':
                 vueresult.cardtypedisplay = "하나카드";
-                tmp = '하나 수수료율 : 0.3%';
-                this.cardrated = 0.003;
+                tmp = '하나 수수료율 : ' + (this.cardrate_bank.hana*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.hana;
                 break;
               case 'bcglobal':
                 vueresult.cardtypedisplay = "BC카드";
-                tmp = 'BC글로벌 수수료율 : 0.35%';
-                this.cardrated = 0.0035;
+                tmp = 'BC글로벌 수수료율 : ' + (this.cardrate_bank.bcglobal*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.bcglobal;
                 break;
 
             }
@@ -3035,43 +3057,43 @@ var vuecurrencybar = new Vue({
             switch (this.fcardtype) {
               case 'basic':
                 vueresult.fcardtypedisplay = '표준';
-                tmp = '평균 수수료율 : 1.05%';
-                this.fcardrated = 0.0105;
+                tmp = '평균 수수료율 : ' + (this.cardrate_forex.basic*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.basic;
                 break;
               case 'visa':
                 vueresult.fcardtypedisplay = 'VISA';
-                tmp = 'VISA 수수료율 : 1.1%';
-                this.fcardrated = 0.011;
+                tmp = 'VISA 수수료율 : ' + (this.cardrate_forex.visa*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.visa;
                 break;
               case 'mastercard':
                 vueresult.fcardtypedisplay = 'MASTERCARD';
-                tmp = 'MasterCard 수수료율 : 1%';
-                this.fcardrated = 0.01;
+                tmp = 'MasterCard 수수료율 : ' + (this.cardrate_forex.mastercard*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.mastercard;
                 break;
               case 'amex':
                 vueresult.fcardtypedisplay = 'Amex';
-                tmp = 'Amercan Express 수수료율 : 1.4%';
-                this.fcardrated = 0.014;
+                tmp = 'Amercan Express 수수료율 : ' + (this.cardrate_forex.amex*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.amex;
                 break;
               case 'maestro':
                 vueresult.fcardtypedisplay = 'MAESTRO';
-                tmp = 'Maestro 수수료율 : 3%';
-                this.fcardrated = 0.03;
+                tmp = 'Maestro 수수료율 : ' + (this.cardrate_forex.maestro*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.maestro;
                 break;
               case 'jcb':
                 vueresult.fcardtypedisplay = 'JCB';
-                tmp = 'JCB 수수료율 : 0%';
-                this.fcardrated = 0;
+                tmp = 'JCB 수수료율 : ' + (this.cardrate_forex.jcb*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.jcb;
                 break;
               case 'bcg':
                 vueresult.fcardtypedisplay = 'BC Global';
-                tmp = 'BC Global 수수료율 : 0%';
-                this.fcardrated = 0;
+                tmp = 'BC Global 수수료율 : ' + (this.cardrate_forex.bcg*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.bcg;
                 break;
               case 'union':
                 vueresult.fcardtypedisplay = 'Unionpay';
-                tmp = 'UnionPay(은련) : 0.8%';
-                this.fcardrated = 0.008;
+                tmp = 'UnionPay(은련) : ' + (this.cardrate_forex.union*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.union;
                 break;
 
 
@@ -3172,6 +3194,9 @@ var vuecurrencybar = new Vue({
     vueconsole.forexstd.eu = parseFloat(stdcurrencyinfo.stdforex.eu.replace(/,/g, ''));
     vueconsole.forexstd.cn = parseFloat(stdcurrencyinfo.stdforex.cn.replace(/,/g, ''));
     vueconsole.forexstd.jp = parseFloat(stdcurrencyinfo.stdforex.jp.replace(/,/g, ''));
+
+    vueconsole.cardrate_bank = cardrate_bank;
+    vueconsole.cardrate_forex = cardrate_forex;
 
     if(urlparam.a0 != undefined){
       vueconsole.mainitem.price = urlparam.a0;
