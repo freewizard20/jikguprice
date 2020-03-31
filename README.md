@@ -4,6 +4,9 @@
 
 > Serverless SPA web application on foreign shopping calculations
 
+## Warning
+
+This repository contains a lot of legacy code.
 
 ## Build Setup
 
@@ -22,6 +25,6 @@ npm run build
 
 > 1.2(May 2017) : Updated browser compatibility
 
-> 1.1(April 2017) : removed bugs by backend/frontend testing code **credits to KwangHyuk Kim**
+> 1.1(April 2017) : removed bugs by backend/frontend testing code
 
 > 1.0(March 2017) : Released first product of jikguprice.com web/android
