@@ -1821,7 +1821,7 @@ var vuecurrencybar = new Vue({
       } // weight 0 
 
 
-
+      return [88888, true];
 
 
     }
@@ -2460,7 +2460,6 @@ var vuecurrencybar = new Vue({
 
           vueresult.ship2 = Math.round(s2 * this.usedforex);
           vueresult.ship3 = Math.round(s3);
-
         },
         settaxprice: function() {
           var t1 = 0;
