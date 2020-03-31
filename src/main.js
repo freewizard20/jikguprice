@@ -669,6 +669,10 @@ var vuecurrencybar = new Vue({
                     <div class="collapsible-body">
                       <ul class="collection">
                         <li class="collection-item" style="padding-left:11px !important;">
+                          <h6 style="font-size:13px;color:#9e9e9e;">&nbsp;🚩 계산결과는 참고용이며 실제 청구금액과 다를 수 있습니다(오류 제보).</h6>
+                          <h6 style="font-size:13px;color:#9e9e9e;">&nbsp;✅ 설정 저장은 아래 공유 바의 저장 버튼을 이용해 주세요.</h6>
+                        </li>
+                        <li class="collection-item" style="padding-left:11px !important;">                        
                           <h6 style="margin-bottom:15px;margin-left:5px;"><i class="material-icons" style="margin-right:5px;position:relative;top:3px;right:5px;">&#xE8F6;</i>추가 할인 정보</h6>
                           <h6>쇼핑몰 추가할인
                             <div class="z-depth-1 light-blue white-text waves-effect waves-light jeonbutton shipbtn" style="margin-left:10px;" v-on:click="malldisdd.push({amount : '', type : 'forex'})">
@@ -908,8 +912,7 @@ var vuecurrencybar = new Vue({
                             </div>
                           </a>
                           <h6>직접 입력 : <input type="number" v-model="fcardratein" style="width:70px;margin-right:0px;" class="jeoninput" placeholder="1"> %</h6>
-                          <div class="clear"></div>
-                          <h6 style="font-size:16px;color:#9e9e9e;float:right;margin-top:20px;">계산결과는 참고용이며 실제 청구금액과 다를 수 있습니다</h6>
+                          <div class="clear"></div>                          
                           <div class='clear'></div>
                           <p style="display:none;">{{totalprice}}{{setprice}}{{setshipprice}}{{settaxprice}}</p>
                           <p style="display:none;">{{setdiscount1}}</p>
