@@ -490,7 +490,7 @@ var vuecurrencybar = new Vue({
 
               </ul>
               <div class="z-depth-1 center-align" style="margin:12px 5px;margin-bottom:12px;padding:10px 15px;border:1px solid green;border-radius:3px;" v-if="istax==false&&totalprice!=0">
-                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br />* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:3px;left:3px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><input type="checkbox" v-model="isnotlist" style="position:relative;left:8px;"></span></h6>
+                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br /><span style="font-size:13px;">* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:4px;left:3px;cursor:pointer;font-size:17px;opacity:0.7;">&#xE8FD;</i></span><input type="checkbox" v-model="isnotlist" style="position:relative;left:4px;top:2.5px;"></span></h6>
                 <div class="clear"></div>
               </div>
               <div class="z-depth-1 center-align" style="margin:12px 0px;margin-bottom:12px;padding:10px 15px;border:1px solid red;border-radius:3px;" v-if="istax==true">
@@ -828,7 +828,7 @@ var vuecurrencybar = new Vue({
                           <h6 v-if="showshipad==true" style="font-size:13px;line-height:16px;">* 배송대행지별로 무게산정 및 가격정책이 매우 상이합니다. 표준 가격표 이상의 정밀한 계산은 위의 배송대행비 추가할인 탭을 이용해 배송비를 보정해 주세요(비용 추가시 음수값 입력하시면 됩니다)</h6>
                         </li>
                         <li class="collection-item" style="padding-left:11px !important;">
-                          <h6 style="margin-bottom:15px;margin-left:5px;">면세범위내 품목지정<i onclick="Materialize.toast('60ml 이상 향수, 주류, 담배 등 사치품은 $150 면세범위 이내여도 국내 특소세 등이 부과됩니다<br />** 이 선택지는 $150 이하에서만 사용됩니다. 초과한 제품은 위에서 분류해 주세요',7000)" class="material-icons" style="position:relative;top:4px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></h6>
+                          <h6 style="margin-bottom:15px;margin-left:5px;">특소세 품목지정<i onclick="Materialize.toast('60ml 이상 향수, 주류, 담배 등 사치품은 $150 면세범위 이내여도 국내 특소세 등이 부과됩니다<br />** 이 선택지는 $150 이하에서만 사용됩니다. 초과한 제품은 위에서 분류해 주세요',7000)" class="material-icons" style="position:relative;top:4px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></h6>
                           <select style="font:inherit; margin:10px 5px;margin-top:3px;border:1px solid #bdbdbd;" v-model="itemtype2">
                               <option value="none">선택</option>
                               <option value="1">60ml 이상 향수</option>
