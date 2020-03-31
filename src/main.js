@@ -40,6 +40,9 @@ var vuecurrencybar = new Vue({
           this.date = date.getDate();
           this.hr = date.getHours();
           this.mn = date.getMinutes();
+        },
+        currency_formatted : function(){
+          return this.usedcurrency.toFixed(2);
         }
       },
       template : `
