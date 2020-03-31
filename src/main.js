@@ -234,7 +234,7 @@ var vuecurrencybar = new Vue({
                 <div v-if="compareresult_showable[8]==true" class="compare_list">
                 <span class="compare_name">지니집</span> : <span class="compare_text">{{compareresult.ginizip}}</span>원
                 </div>
-                <span style="margin:3px;font-size:13px;">* 회원 할인이나 쿠폰은 설정에서 적용해 주세요.
+                <span style="margin:5px;font-size:13px;">* 회원 할인이나 쿠폰은 설정에서 적용해 주세요.
               </div>
             </div>
       `,
