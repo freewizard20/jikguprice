@@ -134,11 +134,13 @@ var vuecurrencybar = new Vue({
                 </li>
                 <li>
                   <div class="collapsible-header"><i class="material-icons">&#xE558;</i>전체 배송비
-                  <a style="margin-top:3px;" href="#!">
-                  <div id="fixedship" style="margin-left:6px;margin-top:9.5px;" class="z-depth-1 light-blue white-text waves-effect waves-light jeonbutton shipbtn">
-                    <h6 style="margin:7px 7px 7px 7px;">배대지 비교</h6>
-                  </div>
-                </a>
+                  
+                  <a style="margin-top:3px;" rel="link5" href="#modal_compare">
+                    <div id="fixedship" style="margin-left:6px;margin-top:9.5px;" class="z-depth-1 light-blue white-text waves-effect waves-light jeonbutton shipbtn">
+                      <h6 style="margin:7px 7px 7px 7px;">배대지 비교</h6>
+                    </div>
+                  </a>
+
                     <a href="#!" class="secondary-content "><i class="tiny material-icons " style="margin-right:-6px">keyboard_arrow_down</i></a>
                     <a href="#!" style="color:green;" class="secondary-content">{{shiptotalc}}원</a></div>
                   <div class="collapsible-body">
@@ -188,6 +190,9 @@ var vuecurrencybar = new Vue({
                   </div>
                 </li>
               </ul>
+              <div id="modal_compare" class="jeonmodal center">
+                <h6 id="bandtitle" style="margin-top:15px;margin-bottom:25px;">배대지 비교 결과</h6>
+              </div>
               </div>
       `,
       computed: {
