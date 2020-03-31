@@ -87,14 +87,14 @@ var vuecurrencybar = new Vue({
         cardtypedisplay: '카드',
         fcardtypedisplay: '표준',
         compareresult: {
-            malltail : -1,
-            ehanex : -1,
-            iporter : -1,
-            postbay : -1,
-            omyzip : -1,
-            uniauction : -1,
-            eldex : -1,
-            newyorkgirls : -1,
+            malltail : 132323,
+            ehanex : 44422,
+            iporter : 444444,
+            postbay : 333333,
+            omyzip : 222222,
+            uniauction : 1212122,
+            eldex : 444444,
+            newyorkgirls : 555555,
             ginizip : -1,
         },
         compareresult_showable: [true, true, true, true, true, true, true, true, true]
@@ -200,12 +200,39 @@ var vuecurrencybar = new Vue({
                   </div>
                 </li>
               </ul>
-              <div id="modal_compare" class="jeonmodal center">
-                <h5 id="modal_compare_title" style="margin-top:15px;margin-bottom:25px;">배대지 비교 ({{weightdisplay}}lbs)</h5>
-                <h6>{{shipmethoddisplay}}, {{isrealweightdisplay}}</h6>
-                <h6>{{compareresult_showable}}</h6>
+              <div id="modal_compare" class="comparemodal center">
+                <h5 id="modal_compare_title" style="margin-top:15px;margin-bottom:3px;">배대지 비교 ({{weightdisplay}}lbs)</h5>
+                <h6 style="margin_bottom:10px;">( {{shipmethoddisplay}}, {{isrealweightdisplay}} )</h6>
+                <div class="divider"></div>
+                <div v-if="compareresult_showable[0]==true">
+                몰테일 : {{compareresult.malltail}}원
+                </div>
+                <div v-if="compareresult_showable[1]==true">
+                이하넥스 : {{compareresult.ehanex}}원
+                </div>
+                <div v-if="compareresult_showable[2]==true">
+                아이포터 : {{compareresult.iporter}}원
+                </div>
+                <div v-if="compareresult_showable[3]==true">
+                포스트베이 : {{compareresult.postbay}}원
+                </div>
+                <div v-if="compareresult_showable[4]==true">
+                오마이집 : {{compareresult.omyzip}}원
+                </div>
+                <div v-if="compareresult_showable[5]==true">
+                유니옥션 : {{compareresult.uniauction}}원
+                </div>
+                <div v-if="compareresult_showable[6]==true">
+                엘덱스 : {{compareresult.eldex}}원
+                </div>
+                <div v-if="compareresult_showable[7]==true">
+                뉴욕걸즈 : {{compareresult.newyorkgirls}}원
+                </div>
+                <div v-if="compareresult_showable[8]==true">
+                지니집 : {{compareresult.ginizip}}원
+                </div>
               </div>
-              </div>
+            </div>
       `,
       computed: {
         dis1rate: function() {
@@ -255,6 +282,17 @@ var vuecurrencybar = new Vue({
           return comnify(numnify(this.price1) + numnify(this.price2));
         },
         shiptotalc: function() {
+          this.compareresult = {
+            malltail : comnify(this.compareresult.malltail),
+            ehanex : comnify(this.compareresult.ehanex),
+            iporter : comnify(this.compareresult.iporter),
+            postbay : comnify(this.compareresult.postbay),
+            omyzip : comnify(this.compareresult.omyzip),
+            uniauction : comnify(this.compareresult.uniauction),
+            eldex : comnify(this.compareresult.eldex),
+            newyorkgirls : comnify(this.compareresult.newyorkgirls),
+            ginizip : comnify(this.compareresult.ginizip),
+          }
           return comnify(numnify(this.ship1) + numnify(this.ship2) + numnify(this.ship3));
         },
         taxtotalc: function() {
@@ -3151,7 +3189,6 @@ if(urlparam.st != undefined){
         }
       });
 
-
       oeraseall= function(){
         vueconsole.cardtype = 'basic';
         vueconsole.fcardtype = 'basic';
@@ -3184,6 +3221,18 @@ if(urlparam.st != undefined){
         vueconsole.volumeweightdisplay=0;
         vueconsole.ssb=[true, true, true, true, true, true, true, true, true];
         vueconsole.target='';
+        vueresult.compareresult_showable=[true, true, true, true, true, true, true, true, true];
+        vueresult.compareresult = {
+          malltail : -1,
+          ehanex : -1,
+          iporter : -1,
+          postbay : -1,
+          omyzip : -1,
+          uniauction : -1,
+          eldex : -1,
+          newyorkgirls : -1,
+          ginizip : -1,
+        };
       }
 
       
