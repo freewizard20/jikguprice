@@ -234,6 +234,7 @@ var vuecurrencybar = new Vue({
                 <div v-if="compareresult_showable[8]==true" class="compare_list">
                 <span class="compare_name">지니집</span> : <span class="compare_text">{{compareresult.ginizip}}</span>원
                 </div>
+                <span style="margin:3px;font-size:13px;">🎁 회원 할인이나 쿠폰은 설정에서 적용해 주세요.
               </div>
             </div>
       `,
@@ -669,7 +670,7 @@ var vuecurrencybar = new Vue({
                     <div class="collapsible-body">
                       <ul class="collection">
                         <li class="collection-item" style="padding-left:11px !important;">
-                          <h6 style="font-size:13px;color:#9e9e9e;">&nbsp;🚩 계산결과는 참고용이며 실제 청구금액과 다를 수 있습니다(오류 제보).</h6>
+                          <h6 style="font-size:13px;color:#9e9e9e;">&nbsp;🚩 계산결과는 참고용입니다. 오류 제보 부탁드려요</h6>
                           <h6 style="font-size:13px;color:#9e9e9e;">&nbsp;✅ 설정 저장은 아래 공유 바의 저장 버튼을 이용해 주세요.</h6>
                         </li>
                         <li class="collection-item" style="padding-left:11px !important;">                        
