@@ -191,7 +191,7 @@ var vuecurrencybar = new Vue({
                 </li>
               </ul>
               <div id="modal_compare" class="jeonmodal center">
-                <h6 id="bandtitle" style="margin-top:15px;margin-bottom:25px;">배대지 비교 결과</h6>
+                <h5 id="modal_compare_title" style="margin-top:15px;margin-bottom:25px;">배대지 비교</h5>
               </div>
               </div>
       `,
@@ -292,8 +292,6 @@ var vuecurrencybar = new Vue({
         tax2rate: function() {
           return Math.round(numnify(this.tax2 / this.pricetotal) * 100)
         },
-
-
         ererec: function() {
           this.edown = comnify(Math.round(numnify(this.totaltotal) * (1 - (numnify(this.erate) / 100))));
           this.eup = comnify(Math.round(numnify(this.totaltotal) * (1 + (numnify(this.erate) / 100))));
