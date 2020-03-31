@@ -24,12 +24,12 @@
     display: none;
     background-color: white;
     max-width: 350px;
-    max-height: 700px;
+    max-height: 500px;
     border-radius: 5px;
-    padding: 15px;
+    padding-top:10px;
     top: 10% !important;
     width: 90%;
-    height : 80%;
+    height : 70%;
   }    
 
   .comparemodal {
