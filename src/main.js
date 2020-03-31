@@ -87,15 +87,15 @@ var vuecurrencybar = new Vue({
         cardtypedisplay: '카드',
         fcardtypedisplay: '표준',
         compareresult: {
-            malltail : 132323,
-            ehanex : 44422,
-            iporter : 444444,
-            postbay : 333333,
-            omyzip : 222222,
-            uniauction : 1212122,
-            eldex : 444444,
-            newyorkgirls : 555555,
-            ginizip : -1,
+            malltail : 0,
+            ehanex : 0,
+            iporter : 0,
+            postbay : 0,
+            omyzip : 0,
+            uniauction : 0,
+            eldex : 0,
+            newyorkgirls : 0,
+            ginizip : 0,
         },
         compareresult_showable: [true, true, true, true, true, true, true, true, true]
       },
@@ -2341,6 +2341,17 @@ var vuecurrencybar = new Vue({
               }
               tmp = this.getshipprice(this.shiptype, this.totalweight, this.shipmethod, this.country);
               s2 = tmp[0];
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               if (tmp[1] == true) {
                 s3 = s3 + s2 * (1 + this.fcardrated) * this.usedforex * (1 + this.cardrated) - s2 * this.usedforex;
               }
@@ -2351,8 +2362,30 @@ var vuecurrencybar = new Vue({
               vueresult.weightdisplay = comnify(numnify(this.volumeweight.toFixed(1)));
               if(this.country=='us'){
               tmp = this.getshipprice(this.shiptype, this.volumeweight * 0.453592, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               }else{
               tmp = this.getshipprice(this.shiptype, this.volumeweight, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               }
               s2 = tmp[0];
               if (tmp[1] == true) {
@@ -2372,6 +2405,17 @@ var vuecurrencybar = new Vue({
               vueresult.isrealweightdisplay = '실무게';
               vueresult.weightdisplay = comnify(numnify(this.totalweight.toFixed(1)));
               tmp = this.getshipprice(this.shiptype, this.totalweight, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               s2 = tmp[0];
               if (tmp[1] == true) {
                 s3 = s3 + s2 * (1 + this.fcardrated) * this.usedforex * (1 + this.cardrated) - s2 * this.usedforex;
@@ -2382,8 +2426,30 @@ var vuecurrencybar = new Vue({
               vueresult.weightdisplay = comnify(numnify(this.volumeweight.toFixed(1)));
               if(this.country=='us'){
               tmp = this.getshipprice(this.shiptype, this.volumeweight * 0.453592, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               }else{
               tmp = this.getshipprice(this.shiptype, this.volumeweight, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               }
               s2 = tmp[0];
               if (tmp[1] == true) {
@@ -3223,15 +3289,15 @@ if(urlparam.st != undefined){
         vueconsole.target='';
         vueresult.compareresult_showable=[true, true, true, true, true, true, true, true, true];
         vueresult.compareresult = {
-          malltail : -1,
-          ehanex : -1,
-          iporter : -1,
-          postbay : -1,
-          omyzip : -1,
-          uniauction : -1,
-          eldex : -1,
-          newyorkgirls : -1,
-          ginizip : -1,
+          malltail : 0,
+          ehanex : 0,
+          iporter : 0,
+          postbay : 0,
+          omyzip : 0,
+          uniauction : 0,
+          eldex : 0,
+          newyorkgirls : 0,
+          ginizip : 0,
         };
       }
 
