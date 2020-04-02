@@ -432,8 +432,30 @@ var vuecurrencybar = new Vue({
         realweightdisplay: 0,
         volumeweightdisplay: 0,
         ssb: [true, true, true, true, true, true, true, true, true],
-        target: ''
-
+        target: '',
+        cardrate_forex:{
+          basic : 0.0105,
+          visa : 0.011,
+          mastercard : 0.01,
+          amex : 0.014,
+          maestro : 0.03,
+          jcb : 0,
+          bcg : 0,
+          union : 0.008
+      },
+      cardrate_bank: {
+        basic : 0.0028,
+        shinhan : 0.0018,
+        lotte : 0.002,
+        kookmin : 0.0025,
+        citi : 0.005,
+        samsung : 0.0025,
+        hyundai : 0.0018,
+        woori : 0.003,
+        nonghyup : 0.0035,
+        hana : 0.003,
+        bcglobal : 0.0035,
+      }
       },
       template:`
       <div>
@@ -468,11 +490,12 @@ var vuecurrencybar = new Vue({
 
               </ul>
               <div class="z-depth-1 center-align" style="margin:12px 5px;margin-bottom:12px;padding:10px 15px;border:1px solid green;border-radius:3px;" v-if="istax==false&&totalprice!=0">
-                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br />* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:3px;left:3px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><input type="checkbox" v-model="isnotlist" style="position:relative;left:8px;"></span></h6>
+                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br /><span style="font-size:13px;">* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:4px;left:3px;cursor:pointer;font-size:17px;opacity:0.7;">&#xE8FD;</i></span><input type="checkbox" v-model="isnotlist" style="position:relative;left:4px;top:2.5px;"></span></h6>
+                <br /><span style="color:green;font-size:13px;">* 특별소비세 대상 품목은 설정에서 별도 지정해 주세요. <i onclick="Materialize.toast('60ml 이상 향수, 주류 및 담배',3000)" class="material-icons" style="position:relative;top:4.5px;left:0px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></span>
                 <div class="clear"></div>
               </div>
               <div class="z-depth-1 center-align" style="margin:12px 0px;margin-bottom:12px;padding:10px 15px;border:1px solid red;border-radius:3px;" v-if="istax==true">
-                <h6 style="color:red;font-size:18px;line-height:137%;">관부가세 계산을 위해 품목을 알려주세요<i onclick="Materialize.toast('과세기준 :<br />미국 목록통관 (결제총액 $200)<br />기타 (결제총액 $150 상당)',4000)" class="material-icons" style="position:relative;top:3px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><br
+                <h6 style="color:red;font-size:18px;line-height:137%;">관부가세 계산을 위해 품목을 알려주세요<i onclick="Materialize.toast('과세기준 :<br />미국 목록통관 (결제총액 $200)<br />기타 (결제총액 $150 상당)',3000)" class="material-icons" style="position:relative;top:3px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><br
                   />(총액 : {{countrymark}} {{totalpricec}})</h6>
                 <div class="clear"></div>
                 <select style="margin:10px 0px;border:1px solid #bdbdbd;font:inherit;" v-if="istax==true" v-model="itemtype">
@@ -806,7 +829,7 @@ var vuecurrencybar = new Vue({
                           <h6 v-if="showshipad==true" style="font-size:13px;line-height:16px;">* 배송대행지별로 무게산정 및 가격정책이 매우 상이합니다. 표준 가격표 이상의 정밀한 계산은 위의 배송대행비 추가할인 탭을 이용해 배송비를 보정해 주세요(비용 추가시 음수값 입력하시면 됩니다)</h6>
                         </li>
                         <li class="collection-item" style="padding-left:11px !important;">
-                          <h6 style="margin-bottom:15px;margin-left:5px;">면세범위내 품목지정<i onclick="Materialize.toast('60ml 이상 향수, 주류, 담배 등 사치품은 $150 면세범위 이내여도 국내 특소세 등이 부과됩니다<br />** 이 선택지는 $150 이하에서만 사용됩니다. 초과한 제품은 위에서 분류해 주세요',7000)" class="material-icons" style="position:relative;top:4px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></h6>
+                          <h6 style="margin-bottom:15px;margin-left:5px;">특소세 품목지정<i onclick="Materialize.toast('60ml 이상 향수, 주류, 담배 등 사치품은 $150 면세범위 이내여도 국내 특소세 등이 부과됩니다<br />** 이 선택지는 $150 이하에서만 사용됩니다. 초과한 제품은 위에서 분류해 주세요',7000)" class="material-icons" style="position:relative;top:4px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></h6>
                           <select style="font:inherit; margin:10px 5px;margin-top:3px;border:1px solid #bdbdbd;" v-model="itemtype2">
                               <option value="none">선택</option>
                               <option value="1">60ml 이상 향수</option>
@@ -2968,58 +2991,58 @@ var vuecurrencybar = new Vue({
 
               case 'basic':
                 vueresult.cardtypedisplay = "카드";
-                tmp = '평균 수수료율 : 0.28%';
-                this.cardrated = 0.0028;
+                tmp = '평균 수수료율 : ' + (this.cardrate_bank.basic*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.basic;
                 break;
               case 'shinhan':
                 vueresult.cardtypedisplay = "신한카드";
-                tmp = '신한 수수료율 : 0.18%';
-                this.cardrated = 0.0018;
+                tmp = '신한 수수료율 : ' + (this.cardrate_bank.shinhan*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.shinhan;
                 break;
               case 'lotte':
                 vueresult.cardtypedisplay = "롯데카드";
-                tmp = '롯데 수수료율 : 0.2%';
-                this.cardrated = 0.002;
+                tmp = '롯데 수수료율 : ' + (this.cardrate_bank.lotte*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.lotte;
                 break;
               case 'kookmin':
                 vueresult.cardtypedisplay = "국민카드";
-                tmp = '국민 수수료율 : 0.25%';
-                this.cardrated = 0.0025;
+                tmp = '국민 수수료율 : ' + (this.cardrate_bank.kookmin*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.kookmin;
                 break;
               case 'foreign':
                 vueresult.cardtypedisplay = "씨티카드";
-                tmp = '씨티 수수료율 : 0.5%';
-                this.cardrated = 0.005;
+                tmp = '씨티 수수료율 : ' + (this.cardrate_bank.citi*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.citi;
                 break;
               case 'samsung':
                 vueresult.cardtypedisplay = "삼성카드";
-                tmp = '삼성 수수료율 : 0.2%';
-                this.cardrated = 0.0025;
+                tmp = '삼성 수수료율 : ' + (this.cardrate_bank.samsung*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.samsung;
                 break;
               case 'hyundai':
                 vueresult.cardtypedisplay = "현대카드";
-                tmp = '현대 수수료율 : 0.18%';
-                this.cardrated = 0.0018;
+                tmp = '현대 수수료율 : ' + (this.cardrate_bank.hyundai*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.hyundai;
                 break;
               case 'woori':
                 vueresult.cardtypedisplay = "우리카드";
-                tmp = '우리 수수료율 : 0.3%';
-                this.cardrated = 0.003;
+                tmp = '우리 수수료율 : ' + (this.cardrate_bank.woori*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.woori;
                 break;
               case 'nonghyup':
                 vueresult.cardtypedisplay = "농협카드";
-                tmp = '농협 수수료율 : 0.35%';
-                this.cardrated = 0.0035;
+                tmp = '농협 수수료율 : ' + (this.cardrate_bank.nonghyup*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.nonghyup;
                 break;
               case 'hana':
                 vueresult.cardtypedisplay = "하나카드";
-                tmp = '하나 수수료율 : 0.3%';
-                this.cardrated = 0.003;
+                tmp = '하나 수수료율 : ' + (this.cardrate_bank.hana*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.hana;
                 break;
               case 'bcglobal':
                 vueresult.cardtypedisplay = "BC카드";
-                tmp = 'BC글로벌 수수료율 : 0.35%';
-                this.cardrated = 0.0035;
+                tmp = 'BC글로벌 수수료율 : ' + (this.cardrate_bank.bcglobal*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.bcglobal;
                 break;
 
             }
@@ -3035,43 +3058,43 @@ var vuecurrencybar = new Vue({
             switch (this.fcardtype) {
               case 'basic':
                 vueresult.fcardtypedisplay = '표준';
-                tmp = '평균 수수료율 : 1.05%';
-                this.fcardrated = 0.0105;
+                tmp = '평균 수수료율 : ' + (this.cardrate_forex.basic*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.basic;
                 break;
               case 'visa':
                 vueresult.fcardtypedisplay = 'VISA';
-                tmp = 'VISA 수수료율 : 1.1%';
-                this.fcardrated = 0.011;
+                tmp = 'VISA 수수료율 : ' + (this.cardrate_forex.visa*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.visa;
                 break;
               case 'mastercard':
                 vueresult.fcardtypedisplay = 'MASTERCARD';
-                tmp = 'MasterCard 수수료율 : 1%';
-                this.fcardrated = 0.01;
+                tmp = 'MasterCard 수수료율 : ' + (this.cardrate_forex.mastercard*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.mastercard;
                 break;
               case 'amex':
                 vueresult.fcardtypedisplay = 'Amex';
-                tmp = 'Amercan Express 수수료율 : 1.4%';
-                this.fcardrated = 0.014;
+                tmp = 'Amercan Express 수수료율 : ' + (this.cardrate_forex.amex*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.amex;
                 break;
               case 'maestro':
                 vueresult.fcardtypedisplay = 'MAESTRO';
-                tmp = 'Maestro 수수료율 : 3%';
-                this.fcardrated = 0.03;
+                tmp = 'Maestro 수수료율 : ' + (this.cardrate_forex.maestro*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.maestro;
                 break;
               case 'jcb':
                 vueresult.fcardtypedisplay = 'JCB';
-                tmp = 'JCB 수수료율 : 0%';
-                this.fcardrated = 0;
+                tmp = 'JCB 수수료율 : ' + (this.cardrate_forex.jcb*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.jcb;
                 break;
               case 'bcg':
                 vueresult.fcardtypedisplay = 'BC Global';
-                tmp = 'BC Global 수수료율 : 0%';
-                this.fcardrated = 0;
+                tmp = 'BC Global 수수료율 : ' + (this.cardrate_forex.bcg*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.bcg;
                 break;
               case 'union':
                 vueresult.fcardtypedisplay = 'Unionpay';
-                tmp = 'UnionPay(은련) : 0.8%';
-                this.fcardrated = 0.008;
+                tmp = 'UnionPay(은련) : ' + (this.cardrate_forex.union*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.union;
                 break;
 
 
@@ -3172,6 +3195,9 @@ var vuecurrencybar = new Vue({
     vueconsole.forexstd.eu = parseFloat(stdcurrencyinfo.stdforex.eu.replace(/,/g, ''));
     vueconsole.forexstd.cn = parseFloat(stdcurrencyinfo.stdforex.cn.replace(/,/g, ''));
     vueconsole.forexstd.jp = parseFloat(stdcurrencyinfo.stdforex.jp.replace(/,/g, ''));
+
+    vueconsole.cardrate_bank = cardrate_bank;
+    vueconsole.cardrate_forex = cardrate_forex;
 
     if(urlparam.a0 != undefined){
       vueconsole.mainitem.price = urlparam.a0;
