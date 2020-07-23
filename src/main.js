@@ -40,6 +40,9 @@ var vuecurrencybar = new Vue({
           this.date = date.getDate();
           this.hr = date.getHours();
           this.mn = date.getMinutes();
+        },
+        currency_formatted : function(){
+          return this.usedcurrency.toFixed(2);
         }
       },
       template : `
@@ -85,9 +88,19 @@ var vuecurrencybar = new Vue({
         weightdisplay: 0,
         weightunitdisplay: 'lbs',
         cardtypedisplay: '카드',
-        fcardtypedisplay: '표준'
-
-
+        fcardtypedisplay: '표준',
+        compareresult: {
+            malltail : 0,
+            ehanex : 0,
+            iporter : 0,
+            postbay : 0,
+            omyzip : 0,
+            uniauction : 0,
+            eldex : 0,
+            newyorkgirls : 0,
+            ginizip : 0,
+        },
+        compareresult_showable: [true, true, true, true, true, true, true, true, true]
       },
       template : `<div>
                     <h6 class="light-blue-text" style="font-size:20px;margin-bottom:20px;margin-top:20px;margin-left:20px;">직구프라이스 계산내역</h6>
@@ -134,6 +147,13 @@ var vuecurrencybar = new Vue({
                 </li>
                 <li>
                   <div class="collapsible-header"><i class="material-icons">&#xE558;</i>전체 배송비
+                  
+                  <a style="margin-top:3px;" rel="link5" href="#modal_compare">
+                    <div id="fixedship" style="margin-left:6px;margin-top:9.5px;" class="z-depth-1 light-blue white-text waves-effect waves-light jeonbutton shipbtn"  v-if="shipmethoddisplay=='항공' || shipmethoddisplay=='해상'">
+                      <h6 style="margin:7px 7px 7px 7px;">배대지 비교</h6>
+                    </div>
+                  </a>
+
                     <a href="#!" class="secondary-content "><i class="tiny material-icons " style="margin-right:-6px">keyboard_arrow_down</i></a>
                     <a href="#!" style="color:green;" class="secondary-content">{{shiptotalc}}원</a></div>
                   <div class="collapsible-body">
@@ -183,7 +203,40 @@ var vuecurrencybar = new Vue({
                   </div>
                 </li>
               </ul>
+              <div id="modal_compare" class="comparemodal center">
+                <h5 id="modal_compare_title" style="margin-top:7px;margin-bottom:3px;color:#03a9fa;font-weight:bold;">배대지 비교 ({{weightdisplay}}lbs)</h5>
+                <h6 style="margin_bottom:10px;font-weight:900;">( {{shipmethoddisplay}}, {{isrealweightdisplay}} )</h6>
+                <div class="divider"></div>
+                <div v-if="compareresult_showable[0]==true" class="compare_list">
+                <span class="compare_name">몰테일</span> : <span class="compare_text">{{compareresult.malltail}}</span>원
+                </div>
+                <div v-if="compareresult_showable[1]==true" class="compare_list">
+                <span class="compare_name">이하넥스</span> : <span class="compare_text">{{compareresult.ehanex}}</span>원
+                </div>
+                <div v-if="compareresult_showable[2]==true" class="compare_list">
+                <span class="compare_name">아이포터</span> : <span class="compare_text">{{compareresult.iporter}}</span>원
+                </div>
+                <div v-if="compareresult_showable[3]==true" class="compare_list">
+                <span class="compare_name">포스트베이</span> : <span class="compare_text">{{compareresult.postbay}}</span>원
+                </div>
+                <div v-if="compareresult_showable[4]==true" class="compare_list">
+                <span class="compare_name">오마이집</span> : <span class="compare_text">{{compareresult.omyzip}}</span>원
+                </div>
+                <div v-if="compareresult_showable[5]==true" class="compare_list">
+                <span class="compare_name">유니옥션</span> : <span class="compare_text">{{compareresult.uniauction}}</span>원
+                </div>
+                <div v-if="compareresult_showable[6]==true" class="compare_list">
+                <span class="compare_name">엘덱스</span> : <span class="compare_text">{{compareresult.eldex}}</span>원
+                </div>
+                <div v-if="compareresult_showable[7]==true" class="compare_list">
+                <span class="compare_name">뉴욕걸즈</span> : <span class="compare_text">{{compareresult.newyorkgirls}}</span>원
+                </div>
+                <div v-if="compareresult_showable[8]==true" class="compare_list">
+                <span class="compare_name">지니집</span> : <span class="compare_text">{{compareresult.ginizip}}</span>원
+                </div>
+                <span style="margin:5px;font-size:13px;">* 회원 할인이나 쿠폰은 설정에서 적용해 주세요.
               </div>
+            </div>
       `,
       computed: {
         dis1rate: function() {
@@ -233,6 +286,17 @@ var vuecurrencybar = new Vue({
           return comnify(numnify(this.price1) + numnify(this.price2));
         },
         shiptotalc: function() {
+          this.compareresult = {
+            malltail : comnify(this.compareresult.malltail),
+            ehanex : comnify(this.compareresult.ehanex),
+            iporter : comnify(this.compareresult.iporter),
+            postbay : comnify(this.compareresult.postbay),
+            omyzip : comnify(this.compareresult.omyzip),
+            uniauction : comnify(this.compareresult.uniauction),
+            eldex : comnify(this.compareresult.eldex),
+            newyorkgirls : comnify(this.compareresult.newyorkgirls),
+            ginizip : comnify(this.compareresult.ginizip),
+          }
           return comnify(numnify(this.ship1) + numnify(this.ship2) + numnify(this.ship3));
         },
         taxtotalc: function() {
@@ -282,8 +346,6 @@ var vuecurrencybar = new Vue({
         tax2rate: function() {
           return Math.round(numnify(this.tax2 / this.pricetotal) * 100)
         },
-
-
         ererec: function() {
           this.edown = comnify(Math.round(numnify(this.totaltotal) * (1 - (numnify(this.erate) / 100))));
           this.eup = comnify(Math.round(numnify(this.totaltotal) * (1 + (numnify(this.erate) / 100))));
@@ -370,8 +432,30 @@ var vuecurrencybar = new Vue({
         realweightdisplay: 0,
         volumeweightdisplay: 0,
         ssb: [true, true, true, true, true, true, true, true, true],
-        target: ''
-
+        target: '',
+        cardrate_forex:{
+          basic : 0.0105,
+          visa : 0.011,
+          mastercard : 0.01,
+          amex : 0.014,
+          maestro : 0.03,
+          jcb : 0,
+          bcg : 0,
+          union : 0.008
+      },
+      cardrate_bank: {
+        basic : 0.0028,
+        shinhan : 0.0018,
+        lotte : 0.002,
+        kookmin : 0.0025,
+        citi : 0.005,
+        samsung : 0.0025,
+        hyundai : 0.0018,
+        woori : 0.003,
+        nonghyup : 0.0035,
+        hana : 0.003,
+        bcglobal : 0.0035,
+      }
       },
       template:`
       <div>
@@ -406,14 +490,15 @@ var vuecurrencybar = new Vue({
 
               </ul>
               <div class="z-depth-1 center-align" style="margin:12px 5px;margin-bottom:12px;padding:10px 15px;border:1px solid green;border-radius:3px;" v-if="istax==false&&totalprice!=0">
-                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br />* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:3px;left:3px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><input type="checkbox" v-model="isnotlist" style="position:relative;left:8px;"></span></h6>
+                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br /><span style="font-size:13px;">* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:4px;left:3px;cursor:pointer;font-size:17px;opacity:0.7;">&#xE8FD;</i></span><input type="checkbox" v-model="isnotlist" style="position:relative;left:4px;top:2.5px;"></span></h6>
+                <br /><span style="color:green;font-size:13px;">* 특별소비세 대상 품목은 설정에서 별도 지정해 주세요. <i onclick="Materialize.toast('60ml 이상 향수, 주류 및 담배',3000)" class="material-icons" style="position:relative;top:4.5px;left:0px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></span>
                 <div class="clear"></div>
               </div>
               <div class="z-depth-1 center-align" style="margin:12px 0px;margin-bottom:12px;padding:10px 15px;border:1px solid red;border-radius:3px;" v-if="istax==true">
-                <h6 style="color:red;font-size:18px;line-height:137%;">관부가세 계산을 위해 품목을 알려주세요<i onclick="Materialize.toast('과세기준 :<br />미국 목록통관 (결제총액 $200)<br />기타 (결제총액 $150 상당)',4000)" class="material-icons" style="position:relative;top:3px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><br
+                <h6 style="color:red;font-size:18px;line-height:137%;">관부가세 계산을 위해 품목을 알려주세요<i onclick="Materialize.toast('과세기준 :<br />미국 목록통관 (결제총액 $200)<br />기타 (결제총액 $150 상당)',3000)" class="material-icons" style="position:relative;top:3px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i><br
                   />(총액 : {{countrymark}} {{totalpricec}})</h6>
                 <div class="clear"></div>
-                <select style="margin:10px 0px;border:1px solid #bdbdbd;" v-if="istax==true" v-model="itemtype">
+                <select style="margin:10px 0px;border:1px solid #bdbdbd;font:inherit;" v-if="istax==true" v-model="itemtype">
                   <option v-if="((country=='us'||country=='eu')||country=='uk')" value="1">무관세(FTA)</option>
                   <option value="121">시계류</option>
                   <option value="2">의류</option>
@@ -608,6 +693,10 @@ var vuecurrencybar = new Vue({
                     <div class="collapsible-body">
                       <ul class="collection">
                         <li class="collection-item" style="padding-left:11px !important;">
+                          <h6 style="font-size:13px;color:#9e9e9e;margin-botton:2px;">&nbsp;🚩 계산결과는 참고용입니다. 오류 제보 부탁드려요.</h6>
+                          <h6 style="font-size:13px;color:#9e9e9e;">&nbsp;✅ 설정 저장은 아래 공유 바의 저장 버튼을 이용해 주세요.</h6>
+                        </li>
+                        <li class="collection-item" style="padding-left:11px !important;">                        
                           <h6 style="margin-bottom:15px;margin-left:5px;"><i class="material-icons" style="margin-right:5px;position:relative;top:3px;right:5px;">&#xE8F6;</i>추가 할인 정보</h6>
                           <h6>쇼핑몰 추가할인
                             <div class="z-depth-1 light-blue white-text waves-effect waves-light jeonbutton shipbtn" style="margin-left:10px;" v-on:click="malldisdd.push({amount : '', type : 'forex'})">
@@ -740,8 +829,8 @@ var vuecurrencybar = new Vue({
                           <h6 v-if="showshipad==true" style="font-size:13px;line-height:16px;">* 배송대행지별로 무게산정 및 가격정책이 매우 상이합니다. 표준 가격표 이상의 정밀한 계산은 위의 배송대행비 추가할인 탭을 이용해 배송비를 보정해 주세요(비용 추가시 음수값 입력하시면 됩니다)</h6>
                         </li>
                         <li class="collection-item" style="padding-left:11px !important;">
-                          <h6 style="margin-bottom:15px;margin-left:5px;">면세범위내 품목지정<i onclick="Materialize.toast('60ml 이상 향수, 주류, 담배 등 사치품은 $150 면세범위 이내여도 국내 특소세 등이 부과됩니다<br />** 이 선택지는 $150 이하에서만 사용됩니다. 초과한 제품은 위에서 분류해 주세요',7000)" class="material-icons" style="position:relative;top:4px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></h6>
-                          <select style="margin:10px 5px;margin-top:3px;border:1px solid #bdbdbd;" v-model="itemtype2">
+                          <h6 style="margin-bottom:15px;margin-left:5px;">특소세 품목지정<i onclick="Materialize.toast('60ml 이상 향수, 주류, 담배 등 사치품은 $150 면세범위 이내여도 국내 특소세 등이 부과됩니다<br />** 이 선택지는 $150 이하에서만 사용됩니다. 초과한 제품은 위에서 분류해 주세요',7000)" class="material-icons" style="position:relative;top:4px;left:5px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></h6>
+                          <select style="font:inherit; margin:10px 5px;margin-top:3px;border:1px solid #bdbdbd;" v-model="itemtype2">
                               <option value="none">선택</option>
                               <option value="1">60ml 이상 향수</option>
                                 <option value="2">와인/청주</option>
@@ -847,9 +936,7 @@ var vuecurrencybar = new Vue({
                             </div>
                           </a>
                           <h6>직접 입력 : <input type="number" v-model="fcardratein" style="width:70px;margin-right:0px;" class="jeoninput" placeholder="1"> %</h6>
-                          <div class="clear"></div>
-                          <h6 style="font-size:16px;color:#9e9e9e;float:right;margin-top:20px;">,계산결과는 참고용이며 실제 청구금액과 다를 수 있습니다</h6>
-                          <h6 style="font-size:16px;color:#9e9e9e;float:right;margin-top:0px;">오류제보 : snowingmidnight@naver.com</h6>
+                          <div class="clear"></div>                          
                           <div class='clear'></div>
                           <p style="display:none;">{{totalprice}}{{setprice}}{{setshipprice}}{{settaxprice}}</p>
                           <p style="display:none;">{{setdiscount1}}</p>
@@ -1010,9 +1097,18 @@ var vuecurrencybar = new Vue({
         }
         else if (shiptype == 'malltail') {
           if(method=='air'){
+          /*
+
+          몰테일 항공운송
+
+          */
           if (country == 'us') {
             tweight = Math.ceil(weight / 0.453592);
-            return [9 + 2 * (tweight), true];
+            if(tweight<=5){
+              return [10.98 + 2 * (tweight), true];
+            }else{
+              return [20 + 2*(tweight - 6), true];
+            }
           }
           else if (country == 'eu') {
 
@@ -1080,11 +1176,68 @@ var vuecurrencybar = new Vue({
           }
           else if (country == 'cn') {
             tweight = Math.ceil(weight * 2) / 2;
-            return [(6.14 * (tweight) + 7.7) * (vueconsole.forex.us / vueconsole.forex.cn), true];
+            if (tweight <= 7.5){
+              switch(tweight){
+                case 0.5:
+                  tmp = 10.77;
+                  break;
+                case 1:
+                  tmp = 13.85;
+                  break;
+                case 1.5:
+                  tmp = 16.92;
+                  break;
+                case 2:
+                  tmp = 20.00;
+                  break;
+                case 2.5:
+                  tmp = 23.08;
+                  break;
+                case 3:
+                  tmp = 26.15;
+                  break;
+                case 3.5:
+                  tmp = 29.23;
+                  break;
+                case 4:
+                  tmp = 32.31;
+                  break;
+                case 4.5:
+                  tmp = 35.38;
+                  break;
+                case 5:
+                  tmp = 38.46;
+                  break;
+                case 5.5:
+                  tmp = 41.54;
+                  break;
+                case 6:
+                  tmp = 44.62;
+                  break;
+                case 6.5:
+                  tmp = 47.69;
+                  break;
+                case 7:
+                  tmp = 50.77;
+                  break;
+                case 7.5:
+                  tmp = 53.85;
+                  break;
+              }
+            }else{
+              tmp = (6.15 * (tweight) + 7.7) * (vueconsole.forex.us / vueconsole.forex.cn)
+            }
+              return [tmp, true];
           }
           else {
             return [99999, true];
           }
+
+          /*
+
+          몰테일 해상운송
+
+          */
           }else{
             if(country=='jp'){
               tweight = Math.ceil(weight * 2) / 2;
@@ -1164,9 +1317,9 @@ var vuecurrencybar = new Vue({
             }else if(country=='cn'){
               tweight = Math.ceil(weight*2)/2;
               if(tweight<=15){
-                tmp = 9 + 4*tweight;
+                tmp = 9.9 + 1.8*tweight;
               }else{
-                tmp = 69 + 3*(tweight-15);
+                tmp = 69 + 1.8*(tweight-15);
               }
               return [(tmp * (vueconsole.forex.us / vueconsole.forex.cn)), true];
             }else{
@@ -1764,7 +1917,7 @@ var vuecurrencybar = new Vue({
       } // weight 0 
 
 
-
+      return [88888, true];
 
 
     }
@@ -1923,8 +2076,8 @@ var vuecurrencybar = new Vue({
           else {
             this.ssb = [false, false, false, false, false, false, false, false, false];
           }
-
-
+          
+          vueresult.compareresult_showable = this.ssb;
 
         },
         resetship : function(){
@@ -2137,7 +2290,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.us;
               this.usedforexstd = this.forexstd.us;
               vuecurrencybar.country = '미국';
-              vuecurrencybar.usedcurrency = this.forex.us-10;
+              vuecurrencybar.usedcurrency = (this.forex.us-10).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.us;
               break;
             case 'jp':
@@ -2152,7 +2305,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.jp;
               this.usedforexstd = this.forexstd.jp;
               vuecurrencybar.country = '일본';
-              vuecurrencybar.usedcurrency = this.forex.jp-0.1;
+              vuecurrencybar.usedcurrency = (this.forex.jp-0.1).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.jp;
               break;
             case 'eu':
@@ -2165,7 +2318,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.eu;
               this.usedforexstd = this.forexstd.eu;
               vuecurrencybar.country = '유로';
-              vuecurrencybar.usedcurrency = this.forex.eu-10;
+              vuecurrencybar.usedcurrency = (this.forex.eu-10).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.eu;
               break;
             case 'cn':
@@ -2180,7 +2333,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.cn;
               this.usedforexstd = this.forexstd.cn;
               vuecurrencybar.country = '중국';
-              vuecurrencybar.usedcurrency = this.forex.cn-1.9;
+              vuecurrencybar.usedcurrency = (this.forex.cn-1.9).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.cn;
               break;
             case 'uk':
@@ -2193,7 +2346,7 @@ var vuecurrencybar = new Vue({
               this.usedforex = this.forex.uk;
               this.usedforexstd = this.forexstd.uk;
               vuecurrencybar.country = '영국';
-              vuecurrencybar.usedcurrency = this.forex.uk-13;
+              vuecurrencybar.usedcurrency = (this.forex.uk-13).toFixed(2);
               vuecurrencybar.usedcurrencystd = this.forexstd.uk;
               break;
           }
@@ -2210,8 +2363,7 @@ var vuecurrencybar = new Vue({
           vueresult.price2 = Math.round((this.cardrated + this.fcardrated + this.cardrated * this.fcardrated) * this.totalitemprice * this.usedforex);
           return p1 + p2;
         },
-setshiptype:function(){
-  
+        setshiptype: function(){  
           if(this.shipmethod=='fixed'){
               this.shiptype='basic';
           }else if(this.shipmethod=='direct'){
@@ -2222,7 +2374,6 @@ setshiptype:function(){
               this.shiptype='basic';
           }
         },
-
         setshipprice: function() {
           var s1;
           var s2;
@@ -2284,6 +2435,17 @@ setshiptype:function(){
               }
               tmp = this.getshipprice(this.shiptype, this.totalweight, this.shipmethod, this.country);
               s2 = tmp[0];
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               if (tmp[1] == true) {
                 s3 = s3 + s2 * (1 + this.fcardrated) * this.usedforex * (1 + this.cardrated) - s2 * this.usedforex;
               }
@@ -2294,8 +2456,30 @@ setshiptype:function(){
               vueresult.weightdisplay = comnify(numnify(this.volumeweight.toFixed(1)));
               if(this.country=='us'){
               tmp = this.getshipprice(this.shiptype, this.volumeweight * 0.453592, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               }else{
               tmp = this.getshipprice(this.shiptype, this.volumeweight, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               }
               s2 = tmp[0];
               if (tmp[1] == true) {
@@ -2315,6 +2499,17 @@ setshiptype:function(){
               vueresult.isrealweightdisplay = '실무게';
               vueresult.weightdisplay = comnify(numnify(this.totalweight.toFixed(1)));
               tmp = this.getshipprice(this.shiptype, this.totalweight, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.totalweight, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               s2 = tmp[0];
               if (tmp[1] == true) {
                 s3 = s3 + s2 * (1 + this.fcardrated) * this.usedforex * (1 + this.cardrated) - s2 * this.usedforex;
@@ -2325,8 +2520,30 @@ setshiptype:function(){
               vueresult.weightdisplay = comnify(numnify(this.volumeweight.toFixed(1)));
               if(this.country=='us'){
               tmp = this.getshipprice(this.shiptype, this.volumeweight * 0.453592, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.volumeweight * 0.453592, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               }else{
               tmp = this.getshipprice(this.shiptype, this.volumeweight, this.shipmethod, this.country);
+              vueresult.compareresult = {
+                malltail : Math.round(this.getshipprice('malltail', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ehanex : Math.round(this.getshipprice('ehanex', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                iporter : Math.round(this.getshipprice('iporter', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                postbay : Math.round(this.getshipprice('postbay', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                omyzip : Math.round(this.getshipprice('omyzip', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                uniauction : Math.round(this.getshipprice('uniauction', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                eldex : Math.round(this.getshipprice('edx', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                newyorkgirls : Math.round(this.getshipprice('nyg', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+                ginizip : Math.round(this.getshipprice('jnj', this.volumeweight, this.shipmethod, this.country)[0] * this.usedforex),
+              };
               }
               s2 = tmp[0];
               if (tmp[1] == true) {
@@ -2337,7 +2554,6 @@ setshiptype:function(){
 
           vueresult.ship2 = Math.round(s2 * this.usedforex);
           vueresult.ship3 = Math.round(s3);
-
         },
         settaxprice: function() {
           var t1 = 0;
@@ -2775,58 +2991,58 @@ setshiptype:function(){
 
               case 'basic':
                 vueresult.cardtypedisplay = "카드";
-                tmp = '평균 수수료율 : 0.28%';
-                this.cardrated = 0.0028;
+                tmp = '평균 수수료율 : ' + (this.cardrate_bank.basic*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.basic;
                 break;
               case 'shinhan':
                 vueresult.cardtypedisplay = "신한카드";
-                tmp = '신한 수수료율 : 0.18%';
-                this.cardrated = 0.0018;
+                tmp = '신한 수수료율 : ' + (this.cardrate_bank.shinhan*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.shinhan;
                 break;
               case 'lotte':
                 vueresult.cardtypedisplay = "롯데카드";
-                tmp = '롯데 수수료율 : 0.2%';
-                this.cardrated = 0.002;
+                tmp = '롯데 수수료율 : ' + (this.cardrate_bank.lotte*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.lotte;
                 break;
               case 'kookmin':
                 vueresult.cardtypedisplay = "국민카드";
-                tmp = '국민 수수료율 : 0.25%';
-                this.cardrated = 0.0025;
+                tmp = '국민 수수료율 : ' + (this.cardrate_bank.kookmin*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.kookmin;
                 break;
               case 'foreign':
                 vueresult.cardtypedisplay = "씨티카드";
-                tmp = '씨티 수수료율 : 0.5%';
-                this.cardrated = 0.005;
+                tmp = '씨티 수수료율 : ' + (this.cardrate_bank.citi*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.citi;
                 break;
               case 'samsung':
                 vueresult.cardtypedisplay = "삼성카드";
-                tmp = '삼성 수수료율 : 0.2%';
-                this.cardrated = 0.0025;
+                tmp = '삼성 수수료율 : ' + (this.cardrate_bank.samsung*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.samsung;
                 break;
               case 'hyundai':
                 vueresult.cardtypedisplay = "현대카드";
-                tmp = '현대 수수료율 : 0.18%';
-                this.cardrated = 0.0018;
+                tmp = '현대 수수료율 : ' + (this.cardrate_bank.hyundai*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.hyundai;
                 break;
               case 'woori':
                 vueresult.cardtypedisplay = "우리카드";
-                tmp = '우리 수수료율 : 0.3%';
-                this.cardrated = 0.003;
+                tmp = '우리 수수료율 : ' + (this.cardrate_bank.woori*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.woori;
                 break;
               case 'nonghyup':
                 vueresult.cardtypedisplay = "농협카드";
-                tmp = '농협 수수료율 : 0.35%';
-                this.cardrated = 0.0035;
+                tmp = '농협 수수료율 : ' + (this.cardrate_bank.nonghyup*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.nonghyup;
                 break;
               case 'hana':
                 vueresult.cardtypedisplay = "하나카드";
-                tmp = '하나 수수료율 : 0.3%';
-                this.cardrated = 0.003;
+                tmp = '하나 수수료율 : ' + (this.cardrate_bank.hana*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.hana;
                 break;
               case 'bcglobal':
                 vueresult.cardtypedisplay = "BC카드";
-                tmp = 'BC글로벌 수수료율 : 0.35%';
-                this.cardrated = 0.0035;
+                tmp = 'BC글로벌 수수료율 : ' + (this.cardrate_bank.bcglobal*100).toFixed(2).toString()+'%';
+                this.cardrated = this.cardrate_bank.bcglobal;
                 break;
 
             }
@@ -2842,43 +3058,43 @@ setshiptype:function(){
             switch (this.fcardtype) {
               case 'basic':
                 vueresult.fcardtypedisplay = '표준';
-                tmp = '평균 수수료율 : 1.05%';
-                this.fcardrated = 0.0105;
+                tmp = '평균 수수료율 : ' + (this.cardrate_forex.basic*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.basic;
                 break;
               case 'visa':
                 vueresult.fcardtypedisplay = 'VISA';
-                tmp = 'VISA 수수료율 : 1.1%';
-                this.fcardrated = 0.011;
+                tmp = 'VISA 수수료율 : ' + (this.cardrate_forex.visa*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.visa;
                 break;
               case 'mastercard':
                 vueresult.fcardtypedisplay = 'MASTERCARD';
-                tmp = 'MasterCard 수수료율 : 1%';
-                this.fcardrated = 0.01;
+                tmp = 'MasterCard 수수료율 : ' + (this.cardrate_forex.mastercard*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.mastercard;
                 break;
               case 'amex':
                 vueresult.fcardtypedisplay = 'Amex';
-                tmp = 'Amercan Express 수수료율 : 1.4%';
-                this.fcardrated = 0.014;
+                tmp = 'Amercan Express 수수료율 : ' + (this.cardrate_forex.amex*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.amex;
                 break;
               case 'maestro':
                 vueresult.fcardtypedisplay = 'MAESTRO';
-                tmp = 'Maestro 수수료율 : 3%';
-                this.fcardrated = 0.03;
+                tmp = 'Maestro 수수료율 : ' + (this.cardrate_forex.maestro*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.maestro;
                 break;
               case 'jcb':
                 vueresult.fcardtypedisplay = 'JCB';
-                tmp = 'JCB 수수료율 : 0%';
-                this.fcardrated = 0;
+                tmp = 'JCB 수수료율 : ' + (this.cardrate_forex.jcb*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.jcb;
                 break;
               case 'bcg':
                 vueresult.fcardtypedisplay = 'BC Global';
-                tmp = 'BC Global 수수료율 : 0%';
-                this.fcardrated = 0;
+                tmp = 'BC Global 수수료율 : ' + (this.cardrate_forex.bcg*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.bcg;
                 break;
               case 'union':
                 vueresult.fcardtypedisplay = 'Unionpay';
-                tmp = 'UnionPay(은련) : 0.8%';
-                this.fcardrated = 0.008;
+                tmp = 'UnionPay(은련) : ' + (this.cardrate_forex.union*100).toFixed(2).toString()+'%';
+                this.fcardrated = this.cardrate_forex.union;
                 break;
 
 
@@ -2979,6 +3195,9 @@ setshiptype:function(){
     vueconsole.forexstd.eu = parseFloat(stdcurrencyinfo.stdforex.eu.replace(/,/g, ''));
     vueconsole.forexstd.cn = parseFloat(stdcurrencyinfo.stdforex.cn.replace(/,/g, ''));
     vueconsole.forexstd.jp = parseFloat(stdcurrencyinfo.stdforex.jp.replace(/,/g, ''));
+
+    vueconsole.cardrate_bank = cardrate_bank;
+    vueconsole.cardrate_forex = cardrate_forex;
 
     if(urlparam.a0 != undefined){
       vueconsole.mainitem.price = urlparam.a0;
@@ -3132,7 +3351,6 @@ if(urlparam.st != undefined){
         }
       });
 
-
       oeraseall= function(){
         vueconsole.cardtype = 'basic';
         vueconsole.fcardtype = 'basic';
@@ -3165,6 +3383,18 @@ if(urlparam.st != undefined){
         vueconsole.volumeweightdisplay=0;
         vueconsole.ssb=[true, true, true, true, true, true, true, true, true];
         vueconsole.target='';
+        vueresult.compareresult_showable=[true, true, true, true, true, true, true, true, true];
+        vueresult.compareresult = {
+          malltail : 0,
+          ehanex : 0,
+          iporter : 0,
+          postbay : 0,
+          omyzip : 0,
+          uniauction : 0,
+          eldex : 0,
+          newyorkgirls : 0,
+          ginizip : 0,
+        };
       }
 
       
