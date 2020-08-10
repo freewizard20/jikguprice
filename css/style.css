@@ -1,7 +1,18 @@
-@media (max-width: 990px) {
-  .amzad {
-    height: 100px !important;
-    width: 320px;
+@media (max-width: 720px) {
+  .ad-original {
+    display: none;
+  }
+  .ad-mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 721px) {
+  .ad-original {
+    display: block;
+  }
+  .ad-mobile {
+    display: none;
   }
 }
 
