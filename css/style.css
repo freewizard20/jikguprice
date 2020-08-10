@@ -1,339 +1,347 @@
+@media (max-width: 990px) {
+  .amzad {
+    height: 100px !important;
+    width: 320px;
+  }
+}
+
 #lean_overlay {
-    position: fixed;
-    z-index: 100;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    background: #000;
-    display: none;
-  }
+  position: fixed;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  display: none;
+}
 
+.jeonmodal {
+  display: none;
+  background-color: white;
+  max-width: 350px;
+  height: 150px;
+  border-radius: 5px;
+  padding: 15px;
+  top: 35% !important;
+  width: 90%;
+}
+
+.feedback_modal {
+  display: none;
+  background-color: white;
+  max-width: 350px;
+  max-height: 500px;
+  border-radius: 5px;
+  padding-top: 10px;
+  top: 10% !important;
+  width: 90%;
+  height: 70%;
+}
+
+.comparemodal {
+  display: none;
+  background-color: white;
+  max-width: 350px;
+  height: 325px;
+  border-radius: 5px;
+  padding: 15px;
+  top: 30% !important;
+  width: 90%;
+}
+
+.compare_divider {
+  margin: 0px !important;
+}
+
+.compare_list {
+  margin: 2px;
+}
+
+.compare_text {
+  color: green;
+}
+
+.compare_name {
+  color: #03a9fa;
+  font-weight: bold;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  font-size: 16px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+  padding-right: 3px;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+select {
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+.page-footer {
+  background-color: blue;
+  z-index: 5;
+}
+
+.mybutton {
+  margin: 8px;
+  margin-left: -4px;
+}
+
+.search-wrapper {
+  margin: 23px 0 12px 0;
+  border: solid 1px gray;
+}
+
+.search-wrapper #search {
+  display: block;
+  font-size: 16px;
+  font-weight: 300;
+  width: 75%;
+  height: 45px;
+  margin: 0;
+  padding: 0 45px 0 15px;
+  border: 0;
+}
+
+.search-wrapper .material-icons {
+  position: absolute;
+  top: 11px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.search-results {
+  margin: 0;
+  border-top: 1px solid #e9e9e9;
+  background-color: #fff;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+.test {
+  visibility: visible;
+  opacity: 0.9;
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 10px 10px 10px;
+  position: absolute;
+  z-index: 999;
+  top: -6px;
+  left: 40px;
+  line-height: 20px;
+}
+
+/* Popup arrow */
+
+.qpopup {
+  cursor: pointer;
+}
+
+#vques1 {
+  cursor: pointer;
+}
+
+#navnav {
+  position: relative;
+  border-bottom: 3px solid #ff9900;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.colorednav {
+  background-color: #ff9900 !important;
+}
+
+.collapsible-body {
+  padding: 0;
+}
+
+.collapsible-header {
+  padding: 0 5px 0 5px;
+}
+
+.collapsible-header i {
+  margin-right: 5px;
+}
+
+.jeoninput {
+  margin-right: 5px;
+  text-align: right;
+  border-radius: 3px;
+  border: 1px solid #444;
+}
+
+.collection-item {
+  padding: 10px 8px !important;
+}
+
+#search:focus {
+  outline: none;
+}
+
+.listlist {
+  width: 19.9999%;
+  height: 100%;
+  float: left;
+  border-left: solid 1px #bdbdbd;
+}
+
+.jeonl.jlist {
+  padding-left: 20px !important;
+  padding-right: 15px !important;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+.jeonbutton {
+  position: relative;
+  top: -3px;
+  display: inline-block;
+  border-radius: 2px;
+  margin: 5px;
+  margin-left: 0px;
+}
+
+.shortbutton {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.divider {
+  margin: 10px;
+}
+
+#preloader,
+#spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
   .jeonmodal {
-    display: none;
-    background-color: white;
-    max-width: 350px;
-    height: 150px;
-    border-radius: 5px;
-    padding: 15px;
-    top: 35% !important;
-    width: 90%;
+    top: 40% !important;
   }
-
-  .feedback_modal {
-    display: none;
-    background-color: white;
-    max-width: 350px;
-    max-height: 500px;
-    border-radius: 5px;
-    padding-top:10px;
-    top: 10% !important;
-    width: 90%;
-    height : 70%;
-  }    
-
-  .comparemodal {
-    display: none;
-    background-color: white;
-    max-width: 350px;
-    height: 325px;
-    border-radius: 5px;
-    padding: 15px;
-    top: 30% !important;
-    width: 90%;
+  .formmodal {
+    top: 40% !important;
   }
-
-  .compare_divider {
-    margin : 0px !important;
-  }
-
-  .compare_list {
-    margin:2px;
-  }
-
-  .compare_text {
-    color : green;
-  }
-
-  .compare_name {
-    color : #03a9fa;
-    font-weight : bold;
-  }
-
-  select,
-  textarea,
-  input[type="text"],
-  input[type="password"],
-  input[type="datetime"],
-  input[type="datetime-local"],
-  input[type="date"],
-  input[type="month"],
-  input[type="time"],
-  input[type="week"],
-  input[type="number"],
-  input[type="email"],
-  input[type="url"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="color"] {
-    font-size: 16px;
-  }
-
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
-  input::placeholder{
-    padding-right:3px;
-  }
-
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
-
-  select {
-    border:1px solid #000;
-    border-radius:3px;
-  }
-
-  .page-footer {
-    background-color: blue;
-    z-index: 5;
-  }
-
-  .mybutton {
-    margin: 8px;
-    margin-left: -4px
-  }
-
-  .search-wrapper {
-    margin: 23px 0 12px 0;
-    border: solid 1px gray;
-  }
-
-  .search-wrapper #search {
-    display: block;
-    font-size: 16px;
-    font-weight: 300;
-    width: 75%;
-    height: 45px;
-    margin: 0;
-    padding: 0 45px 0 15px;
-    border: 0;
-  }
-
-  .search-wrapper .material-icons {
-    position: absolute;
-    top: 11px;
-    right: 10px;
-    cursor: pointer;
-  }
-
-  .search-results {
-    margin: 0;
-    border-top: 1px solid #e9e9e9;
-    background-color: #fff;
-  }
-
-  .clear {
-    clear: both;
-    height: 0;
-    overflow: hidden;
-  }
-
-  .test {
-    visibility: visible;
-    opacity: 0.9;
-    background-color: #555;
-    color: #fff;
-    border-radius: 5px;
-    padding: 8px 10px 10px 10px;
-    position: absolute;
-    z-index: 999;
-    top: -6px;
-    left: 40px;
-    line-height: 20px;
-  }
-
-  /* Popup arrow */
-
-  .qpopup {
-    cursor: pointer;
-  }
-
-  #vques1 {
-    cursor: pointer;
-  }
-
-  #navnav {
-    position: relative;
-    border-bottom: 3px solid #FF9900;
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-  }
-
-  .colorednav {
-    background-color: #FF9900 !important;
-  }
-
-  .collapsible-body {
-    padding: 0;
-  }
-
-  .collapsible-header {
-    padding: 0 5px 0 5px;
-  }
-
-  .collapsible-header i {
-    margin-right: 5px;
-  }
-
-  .jeoninput {
-    margin-right: 5px;
-    text-align: right;
-    border-radius: 3px;
-    border: 1px solid #444;
-  }
-
-  .collection-item {
-    padding: 10px 8px !important;
-  }
-
-  #search:focus {
-    outline: none;
-  }
-
-  .listlist {
-    width: 19.9999%;
-    height: 100%;
-    float: left;
-    border-left: solid 1px #bdbdbd;
-  }
-
-  .jeonl.jlist {
-    padding-left: 20px !important;
-    padding-right: 15px !important;
-    border-top: 1px solid #e0e0e0;
-    border-bottom: none;
-  }
-
-  h5 {
-    font-size: 18px;
-  }
-
-  h4 {
-    font-size: 24px;
-  }
-
-  .jeonbutton {
-    position: relative;
-    top: -3px;
+  #myTopnav {
+    margin-left: 0px;
     display: inline-block;
-    border-radius: 2px;
-    margin: 5px;
-    margin-left: 0px
   }
+  #navcon {
+    text-align: center;
+  }
+  #sidenavtab {
+    display: none;
+  }
+  .search-wrapper {
+    clear: left;
+    margin-top: 20px;
+  }
+  nav {
+    /*display:none;*/
+  }
+  .fxex {
+    display: none;
+  }
+  .test::after {
+    left: 20%;
+  }
+}
 
-  .shortbutton {
-    margin-top: 5px;
-    margin-bottom: 5px;
+@media screen and (min-width: 601px) {
+  #myTopnav {
+    margin-left: -20px;
   }
+  #sidenavtab {
+    display: none;
+  }
+  .fxex2 {
+    display: none;
+  }
+  .search-wrapper #search {
+    width: 85%;
+  }
+}
 
-  .divider {
-    margin: 10px;
+@media screen and (max-width: 900px) {
+  #googlead1 {
+    display: none;
   }
+}
 
-  #preloader,
-  #spinner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background: #fff;
-    z-index: 9999;
-    overflow: hidden;
-  }
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-size: 15px;
+  color: #e0e0e0;
+}
 
-  @media screen and (max-width: 600px) {
-    .jeonmodal {
-      top: 40% !important;
-    }
-    .formmodal {
-      top: 40% !important;
-    }
-    #myTopnav {
-      margin-left: 0px;
-      display: inline-block;
-    }
-    #navcon {
-      text-align: center;
-    }
-    #sidenavtab {
-      display: none;
-    }
-    .search-wrapper {
-      clear: left;
-      margin-top: 20px;
-    }
-    nav {
-      /*display:none;*/
-    }
-    .fxex {
-      display: none;
-    }
-    .test::after {
-      left: 20%;
-    }
-  }
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #e0e0e0;
+}
 
-  @media screen and (min-width:601px) {
-    #myTopnav {
-      margin-left: -20px;
-    }
-    #sidenavtab {
-      display: none;
-    }
-    .fxex2 {
-      display: none;
-    }
-    .search-wrapper #search {
-      width: 85%;
-    }
-  }
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #e0e0e0;
+}
 
-  @media screen and (max-width:900px) {
-    #googlead1 {
-      display: none;
-    }
-  }
-
-  ::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    font-size: 15px;
-    color: #e0e0e0;
-  }
-
-  ::-moz-placeholder {
-    /* Firefox 19+ */
-    color: #e0e0e0;
-  }
-
-  :-ms-input-placeholder {
-    /* IE 10+ */
-    color: #e0e0e0;
-  }
-
-  :-moz-placeholder {
-    /* Firefox 18- */
-    color: #e0e0e0;
-  }
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #e0e0e0;
+}
