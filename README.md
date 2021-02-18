@@ -8,6 +8,13 @@
 
 This repository contains a lot of legacy code.
 
+## Tech stack
+
+- JAMStack serverless SPA web app
+- Vue.js
+- AWS Lambda
+- AWS S3
+
 ## Build Setup
 
 ``` bash
