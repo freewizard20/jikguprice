@@ -448,13 +448,13 @@ var vuecurrencybar = new Vue({
         shinhan : 0.0018,
         lotte : 0.002,
         kookmin : 0.0025,
-        citi : 0.005,
-        samsung : 0.0025,
+        citi : 0.0025,
+        samsung : 0.002,
         hyundai : 0.0018,
         woori : 0.003,
-        nonghyup : 0.0035,
-        hana : 0.003,
-        bcglobal : 0.0035,
+        nonghyup : 0.0025,
+        hana : 0.002,
+        bcglobal : 0,
       }
       },
       template:`
