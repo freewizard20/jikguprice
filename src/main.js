@@ -490,7 +490,7 @@ var vuecurrencybar = new Vue({
 
               </ul>
               <div class="z-depth-1 center-align" style="margin:12px 5px;margin-bottom:12px;padding:10px 15px;border:1px solid green;border-radius:3px;" v-if="istax==false&&totalprice!=0">
-                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br /><span style="font-size:13px;">* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:4px;left:3px;cursor:pointer;font-size:17px;opacity:0.7;">&#xE8FD;</i></span><input type="checkbox" v-model="isnotlist" style="position:relative;left:4px;top:2.5px;"></span></h6>
+                <h6 style="color:green;font-size:18px;line-height:137%;">관부가세가 면제됩니다.<br />(총액 : {{countrymark}} {{totalpricec}})<span style="color:red;position:relative;top:5px;" v-if="((istax==false&&totalprice!=0)&&(country=='us'))&&(this.totalprice>150)"><br /><span style="font-size:13px;">* 목록통관이 아닌가요?<i onclick="Materialize.toast('목록통과 불가 품목 :<br />전자기기, 식품류, 술담배, 의약품, 건강기능식품, 화장품 중 (미백/자외선제품/60ml이상 향수), 동식물 등<br />정식 신고절차가 필요한 제품',9000)" class="material-icons" style="position:relative;top:4px;left:3px;cursor:pointer;font-size:17px;opacity:0.7;">&#xE8FD;</i></span><input type="checkbox" v-model="isnotlist" style="position:relative;left:4px;top:2.5px;"></span></h6>
                 <br /><span style="color:green;font-size:13px;">* 특별소비세 대상 품목은 설정에서 별도 지정해 주세요. <i onclick="Materialize.toast('60ml 이상 향수, 주류 및 담배',3000)" class="material-icons" style="position:relative;top:4.5px;left:0px;cursor:pointer;font-size:20px;opacity:0.7;">&#xE8FD;</i></span>
                 <div class="clear"></div>
               </div>
@@ -2686,7 +2686,7 @@ var vuecurrencybar = new Vue({
               case 22:
                 rate = 0;
                 vueresult.tax1rate = rate * 100;
-                vueresult.itemtt = "- 핸드폰";
+                vueresult.itemtt = "- 핸드폰/이어폰/스마트워치";
                 break;
               case 23:
                 rate = 0;
@@ -2711,7 +2711,7 @@ var vuecurrencybar = new Vue({
               case 27:
                 rate = 0.08;
                 vueresult.tax1rate = rate * 100;
-                vueresult.itemtt = "- 캠코터/녹음기";
+                vueresult.itemtt = "- 캠코더/녹음기";
                 break;
               case 28:
                 rate = 0.08;
